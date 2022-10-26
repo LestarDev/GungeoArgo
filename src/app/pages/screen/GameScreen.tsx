@@ -3,20 +3,21 @@ import Background from "../background/background";
 
 const GameScreen = () => {
 
-    function Page(){
-        const player = usePlayer();
-
-        switch(player.page){
-            case 1:
-                return <Background />
-            default:
-                return <Background />
-        }
-    }
+    const player = usePlayer();
 
     return (
         <>
-            <Page />
+            <Background page={player.page1} />
+            <Background />
+            <Background />
+
+            <Background />
+            <Background />
+            <Background />
+
+            <Background />
+            <Background />
+            <Background />
         </>
     )
 }

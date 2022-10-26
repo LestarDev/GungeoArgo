@@ -1,22 +1,55 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import PageType from './pageInterface'
 
 // Define a type for the slice state
 interface CounterState {
-  page: number,
+  page1: PageType,
+  page2: PageType,
+  page3: PageType,
+  page4: PageType,
+  page5: PageType,
+  page6: PageType,
+  page7: PageType,
+  page8: PageType,
+  page9: PageType,
   ATK: number,
-  statDEF: number,
   HP: number,
-  MOC: number
+  GOLD: number
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
-  page: 0,
+  page1: {
+    typ: "Blank"
+  },
+  page2: {
+    typ: "Blank"
+  },
+  page3: {
+    typ: "Blank"
+  },
+  page4: {
+    typ: "Blank"
+  },
+  page5: {
+    typ: "Blank"
+  },
+  page6: {
+    typ: "Blank"
+  },
+  page7: {
+    typ: "Blank"
+  },
+  page8: {
+    typ: "Blank"
+  },
+  page9: {
+    typ: "Blank"
+  },
   ATK: 1,
-  statDEF: 3,
   HP: 10,
-  MOC: 1 
+  GOLD: 0
 }
 
 export const currencySlice = createSlice({
@@ -28,33 +61,51 @@ export const currencySlice = createSlice({
     addATK: (state, action: PayloadAction<number>) => {
       state.ATK += action.payload
     },
-    addStaticDEF: (state, action: PayloadAction<number>) => {
-        state.statDEF += action.payload
-    },
     addHP: (state, action: PayloadAction<number>) => {
         state.HP += action.payload
     },
-    addMOC: (state, action: PayloadAction<number>) => {
-        state.MOC += action.payload
-    },
     subATK: (state, action: PayloadAction<number>) => {
-        state.ATK -= action.payload
-      },
-      subStaticDEF: (state, action: PayloadAction<number>) => {
-          state.statDEF -= action.payload
-      },
-      subHP: (state, action: PayloadAction<number>) => {
-          state.HP -= action.payload
-      },
-      subMOC: (state, action: PayloadAction<number>) => {
-          state.MOC -= action.payload
-      },
-    setPage: (state, action: PayloadAction<number>) => {
-      state.page = action.payload
-    }
+      state.ATK -= action.payload
+    },
+    subHP: (state, action: PayloadAction<number>) => {
+        state.HP -= action.payload
+    },
+    setPage1: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    addGOLD: (state, action: PayloadAction<number>) => {
+      state.GOLD += action.payload
+    },
+    subGOLD: (state, action: PayloadAction<number>) => {
+      state.GOLD -= action.payload
+    },
+    setPage2: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage3: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage4: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage5: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage6: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage7: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage8: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
+    setPage9: (state, action: PayloadAction<PageType>) => {
+      state.page1 = action.payload;
+    },
   },
 })
 
-export const { setPage, addATK, addHP, addMOC, addStaticDEF, subATK, subHP, subMOC, subStaticDEF } = currencySlice.actions
+export const { addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
 
 export default currencySlice.reducer

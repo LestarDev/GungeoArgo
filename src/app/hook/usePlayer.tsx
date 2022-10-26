@@ -1,18 +1,42 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setPage, addATK, addHP, addMOC, addStaticDEF, subATK, subHP, subMOC, subStaticDEF } from "./../shared/config/currentSlice"
+import PageType from "../shared/config/pageInterface";
+import { addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
 
-type pageType = "Eq"
-type changeTyp = "ATK" | "statDEF" | "HP" | "MOC"
+type changeTyp = "ATK" | "HP" | "GOLD"
 
 const usePlayer = () => {
 
     const dispatch = useDispatch();
-    const {page, ATK, statDEF, HP, MOC} = (useSelector((state) => state) as any).currency;
+    const {ATK, HP, GOLD, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
 
-    const moveToPage = (page: pageType) => {
-        switch(page){
-            case "Eq":
-                dispatch(setPage(1))
+    const setPage = (pageNR: number, toPage: PageType) => {
+        switch(pageNR){
+            case 1:
+                dispatch(setPage1(toPage))
+                break;
+            case 2:
+                dispatch(setPage2(toPage))
+                break;
+            case 3:
+                dispatch(setPage3(toPage))
+                break;
+            case 4:
+                dispatch(setPage4(toPage))
+                break;
+            case 5:
+                dispatch(setPage5(toPage))
+                break;
+            case 6:
+                dispatch(setPage6(toPage))
+                break;
+            case 7:
+                dispatch(setPage7(toPage))
+                break;
+            case 8:
+                dispatch(setPage8(toPage))
+                break;
+            case 9:
+                dispatch(setPage9(toPage))
                 break;
             default:
                 console.log("Error")
@@ -24,14 +48,11 @@ const usePlayer = () => {
             case "ATK":
                 dispatch(addATK(amount))
                 break;
-            case "statDEF":
-                dispatch(addStaticDEF(amount))
-                break;
             case "HP":
                 dispatch(addHP(amount))
                 break;
-            case "MOC":
-                dispatch(addMOC(amount))
+            case "GOLD":
+                dispatch(addGOLD(amount))
                 break;
             default:
                 console.log("Error!")
@@ -43,14 +64,11 @@ const usePlayer = () => {
             case "ATK":
                 dispatch(subATK(amount))
                 break;
-            case "statDEF":
-                dispatch(subStaticDEF(amount))
-                break;
             case "HP":
                 dispatch(subHP(amount))
                 break;
-            case "MOC":
-                dispatch(subMOC(amount))
+            case "GOLD":
+                dispatch(subGOLD(amount))
                 break;
             default:
                 console.log("Error!")
@@ -58,9 +76,9 @@ const usePlayer = () => {
     }
 
     return ({
-        moveToPage, add, substract,
-        page,
-        HP, ATK, statDEF, MOC
+        setPage, add, substract,
+        page1, page2, page3, page4, page5, page6, page7, page8, page9,
+        HP, ATK, GOLD
     })
 
 }
