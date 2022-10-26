@@ -9,3 +9,14 @@
 .card img{
     width: 15vw;
 }
+
+.card div{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.card div span.hide{
+    display: none;
+}

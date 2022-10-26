@@ -1,27 +1,37 @@
 import { useRef } from "react";
+import usePlayer from "../../hook/usePlayer";
 import PageType from "../../shared/config/pageInterface";
 import "./Card.css"
 
 const Card = (card: PageType) => {
 
-    const  nameRef = useRef<HTMLParagraphElement>(null);
-    const valueRef = useRef<HTMLSpanElement>(null);
+    let name: string = ""
+    let value: string = ""
+
+    let classNameHide = "";
+
+    const player = usePlayer()
 
     switch(card.typ){
         case "Item":
-            nameRef.current!.innerHTML=card.item!.name
-            valueRef.current!.innerHTML=card.item!.power+""
+            name=card.item!.name
+            value=card.item!.power+""
             break;
         case "Monster":
-            nameRef.current!.innerHTML=card.monster!.name
-            valueRef.current!.innerHTML=card.monster!.HP+""
+            name=card.monster!.name
+            value=card.monster!.HP+""
             break;
         case "Money":
-            nameRef.current!.innerHTML=card.money!.typ
-            valueRef.current!.innerHTML=card.money!.count+""
+            name=card.money!.typ
+            value=card.money!.count+""
             break;
         case "Blank":
-            nameRef.current!.innerHTML="Pusty"
+            name="Pusty"
+            classNameHide = "hide"
+            break;
+        case "Player":
+            name="Ty"
+            value=player.ATK
             break;
         default:
             
@@ -30,8 +40,10 @@ const Card = (card: PageType) => {
     return (
         <div className="card">
             <img src={card.img} alt={card.typ}/>
-            <p ref={nameRef}></p>
-            <span ref={valueRef}></span>
+            <div>
+                <p>{name}</p>
+                <span className={classNameHide}>{value}</span>
+            </div>
         </div>
     )
 }
