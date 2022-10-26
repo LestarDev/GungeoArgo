@@ -1,7 +1,8 @@
 import PageType from "../config/pageInterface"
 
 const Blank: PageType = {
-    typ: "Blank"
+    typ: "Blank",
+    img: ""
 }
 
 export default Blank;

@@ -1,26 +1,31 @@
 type Typ = "Money" | "Blank" | "Monster" | "Item" | "Player";
 
-type SubTyp = "Fire" | "Ice";
+type MonsterTyp = "Fire" | "Ice";
 
 type ItemTyp = "Potion" | "Sword" | "Wand"
 
+type MoneyTyp = "Coin" | "Rubin"
+
 interface Money {
     count: number,
-    img: string
+    typ: MoneyTyp
 }
 
 interface Monster {
     HP: number,
-    subType?: SubTyp
+    name: string,
+    subType?: MonsterTyp
 }
 
 interface Item {
     power: number,
+    name: string,
     typ: ItemTyp
 }
 
 interface PageType {
     typ: Typ,
+    img: string,
     money?: Money,
     monster?: Monster,
     item?: Item

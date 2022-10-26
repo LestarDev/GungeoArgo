@@ -1,6 +1,6 @@
 import usePlayer from "../../hook/usePlayer";
 import PageType from "../../shared/config/pageInterface";
-import Card from "../fragment/card";
+import Card from "../card/Card";
 import "./background"
 
 const Background = () => {
@@ -11,8 +11,8 @@ const Background = () => {
 
 
     return (
-        <div>
-            {card1.typ}
+        <div className="cardWrapper">
+            <Card {...card1}/>
         </div>
     )
 }
