@@ -1,9 +1,14 @@
 import PageType from "../../shared/config/pageInterface";
 import "./background"
 
-const Background = (page: PageType) => {
+const Background = (pageAny: any) => {
+
+    const page = pageAny as PageType
+
     return (
-        <div></div>
+        <div>
+            {page.typ}
+        </div>
     )
 }
 

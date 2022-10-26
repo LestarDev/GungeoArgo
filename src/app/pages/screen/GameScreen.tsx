@@ -7,17 +7,17 @@ const GameScreen = () => {
 
     return (
         <>
-            <Background page={player.page1} />
-            <Background />
-            <Background />
+            <Background pageAny={player.page1} />
+            <Background pageAny={player.page2} />
+            <Background pageAny={player.page3}/>
 
-            <Background />
-            <Background />
-            <Background />
+            <Background pageAny={player.page4}/>
+            <Background pageAny={player.page5}/>
+            <Background pageAny={player.page6}/>
 
-            <Background />
-            <Background />
-            <Background />
+            <Background pageAny={player.page7}/>
+            <Background pageAny={player.page8}/>
+            <Background pageAny={player.page9}/>
         </>
     )
 }
