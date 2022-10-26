@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import PageType from './pageInterface'
 import Blank from '../components/blank'
+import Player from '../components/player'
+
 
 // Define a type for the slice state
 interface CounterState {
@@ -25,7 +27,7 @@ const initialState: CounterState = {
   page2: Blank,
   page3: Blank,
   page4: Blank,
-  page5: Blank,
+  page5: Player,
   page6: Blank,
   page7: Blank,
   page8: Blank,

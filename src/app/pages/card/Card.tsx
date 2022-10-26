@@ -19,6 +19,10 @@ const Card = (card: PageType) => {
         case "Money":
             nameRef.current!.innerHTML=card.money!.typ
             valueRef.current!.innerHTML=card.money!.count+""
+            break;
+        case "Blank":
+            nameRef.current!.innerHTML="Pusty"
+            break;
         default:
             
     }

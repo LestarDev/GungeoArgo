@@ -1,4 +1,11 @@
 .card{
-    max-width: 20vw;
-    width: 20vw;
+    max-width: 14vw;
+    width: 14vw;
+    border: 3px solid black;
+    height: 23vh;
+    margin: auto;
+}
+
+.card img{
+    width: 15vw;
 }
