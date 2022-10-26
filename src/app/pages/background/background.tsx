@@ -1,13 +1,18 @@
+import usePlayer from "../../hook/usePlayer";
 import PageType from "../../shared/config/pageInterface";
+import Card from "../fragment/card";
 import "./background"
 
-const Background = (pageAny: any) => {
+const Background = () => {
 
-    const page = pageAny as PageType
+    const player = usePlayer();
+
+    const card1: PageType = player.page1 as PageType;
+
 
     return (
         <div>
-            {page.typ}
+            {card1.typ}
         </div>
     )
 }
