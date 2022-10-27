@@ -4,16 +4,7 @@ import Player from "../../shared/components/player";
 import PageType from "../../shared/config/pageInterface";
 import "./Card.css"
 
-const Swap = (card: PageType) => {
-    const Tymczasowy = card;
-
-    const player = usePlayer();
-
-    
-
-}
-
-const Card = (card: PageType, pageNr: number) => {
+const Card = (card: PageType) => {
 
     let name: string = ""
     let value: string = ""
@@ -21,6 +12,40 @@ const Card = (card: PageType, pageNr: number) => {
     let classNameHide = "";
 
     const player = usePlayer()
+
+    const Swap = (card: PageType) => {
+
+        const Tymczasowe: PageType = card;
+    
+        let playerPage: PageType;
+
+        if(player.page1.typ=="Player"){
+            playerPage=player.page1;
+        } else if(player.page2.typ=="Player"){
+            playerPage=player.page2;
+        } else if(player.page3.typ=="Player"){
+            playerPage=player.page3;
+        } else if(player.page4.typ=="Player"){
+            playerPage=player.page4;
+        } else if(player.page5.typ=="Player"){
+            playerPage=player.page5;
+        } else if(player.page6.typ=="Player"){
+            playerPage=player.page6;
+        } else if(player.page7.typ=="Player"){
+            playerPage=player.page7;
+        } else if(player.page8.typ=="Player"){
+            playerPage=player.page8;
+        } else{
+            playerPage=player.page9;
+        }
+        
+        console.log(card.pageNr, playerPage.pageNr)
+
+        player.setPage(card.pageNr!, playerPage)
+    
+        // player.setPage(playerPage.pageNr!, Tymczasowe)
+    
+    }
 
     switch(card.typ){
         case "Item":

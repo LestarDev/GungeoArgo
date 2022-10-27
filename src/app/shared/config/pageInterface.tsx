@@ -28,12 +28,8 @@ interface PageType {
     img: string,
     money?: Money,
     monster?: Monster,
-    item?: Item
-}
-
-export interface cardTyp {
-    page: PageType,
-    pageNr: number
+    item?: Item,
+    pageNr?: number
 }
 
 export default PageType

@@ -3,7 +3,8 @@ import player from "./../../../assets/player.png"
 
 const Player: PageType = {
     typ: "Player",
-    img: player
+    img: player,
+    pageNr: 5
 }
 
 export default Player
