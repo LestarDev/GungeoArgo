@@ -7,10 +7,14 @@ const Layout = () => {
 
     const heartImg = "";
 
+    const goldIcon = ""
+
     return (
         <div className="Layout">
-            <span>{player.HP}</span>
-            <img src={heartImg} alt="Heart" />
+            <div><span>{player.HP}</span>
+            <img src={heartImg} alt="Heart" /></div>
+            <div><span>{player.GOLD}</span>
+            <img src={goldIcon} alt="Gold" /></div>
         </div>
     )
 }
