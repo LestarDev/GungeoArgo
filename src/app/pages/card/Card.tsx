@@ -71,6 +71,9 @@ const Card = (card: PageType) => {
                 Swap(blankPage)
                 break;
             case "Potion":
+                player.add("HP", card.item!.power)
+                player.setPage(card.pageNr!, Blank)
+                Swap(blankPage)
                 break;
             case "Wand":
                 break;

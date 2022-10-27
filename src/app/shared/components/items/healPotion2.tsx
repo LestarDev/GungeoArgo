@@ -9,3 +9,5 @@ const HealPotion2: PageType = {
         typ: "Potion"
     }
 }
+
+export default HealPotion2
