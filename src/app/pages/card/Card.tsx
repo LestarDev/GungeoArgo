@@ -1,9 +1,19 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import usePlayer from "../../hook/usePlayer";
+import Player from "../../shared/components/player";
 import PageType from "../../shared/config/pageInterface";
 import "./Card.css"
 
-const Card = (card: PageType) => {
+const Swap = (card: PageType) => {
+    const Tymczasowy = card;
+
+    const player = usePlayer();
+
+    
+
+}
+
+const Card = (card: PageType, pageNr: number) => {
 
     let name: string = ""
     let value: string = ""
@@ -39,7 +49,10 @@ const Card = (card: PageType) => {
 
     return (
         <div className="card">
-            <img src={card.img} alt={card.typ}/>
+            <img src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
+                if(card.typ=="Player") return;
+                if(card.typ=="Blank") Swap(card)
+            }}/>
             <div>
                 <p>{name}</p>
                 <span className={classNameHide}>{value}</span>

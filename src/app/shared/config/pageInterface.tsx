@@ -31,4 +31,9 @@ interface PageType {
     item?: Item
 }
 
+export interface cardTyp {
+    page: PageType,
+    pageNr: number
+}
+
 export default PageType

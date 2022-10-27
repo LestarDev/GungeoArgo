@@ -3,6 +3,7 @@ import PageType from "../../shared/config/pageInterface";
 import Card from "../card/Card";
 import "./background.css"
 
+
 const Background = () => {
 
     const player = usePlayer();
