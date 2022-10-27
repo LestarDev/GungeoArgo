@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import usePlayer from "../../hook/usePlayer";
 import Blank from "../../shared/components/blank";
-import Player from "../../shared/components/player";
 import PageType from "../../shared/config/pageInterface";
 import randomItem from "../../shared/config/randomItem";
 import "./Card.css"
@@ -56,11 +55,6 @@ const Card = (card: PageType) => {
         }
 
     }
-    const blankPage: PageType = {
-        typ: Blank.typ,
-        img: Blank.img,
-        pageNr: card.pageNr
-    }
 
     const getRandomPage = (card: PageType) => {
         const randPage: PageType = randomItem();
@@ -99,7 +93,7 @@ const Card = (card: PageType) => {
 
     const gain = (card: PageType) => {
         player.add("GOLD", card.money!.count)
-        Swap(blankPage)
+        Swap(getRandomPage(card))
     }
 
     switch(card.typ){
