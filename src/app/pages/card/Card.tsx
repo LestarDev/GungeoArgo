@@ -115,7 +115,7 @@ const Card = (card: PageType) => {
             }}/>
             <div>
                 <p>{name}</p>
-                <span className={classNameHide}>{value}</span>
+                <span className={classNameHide}>{value}&nbsp;</span>
             </div>
         </div>
     )
