@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import PageType from "../shared/config/pageInterface";
-import { addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
+import { setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
 
 type changeTyp = "ATK" | "HP" | "GOLD"
 
@@ -8,6 +8,40 @@ const usePlayer = () => {
 
     const dispatch = useDispatch();
     const {ATK, HP, GOLD, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+
+    const setPageNr = (pageNr: number, value: number) => {
+        switch(pageNr){
+            case 1:
+                dispatch(setPageNr1(value))
+                break;
+            case 2:
+                dispatch(setPageNr2(value))
+                break;
+            case 3:
+                dispatch(setPageNr3(value))
+                break;
+            case 4:
+                dispatch(setPageNr4(value))
+                break;
+            case 5:
+                dispatch(setPageNr5(value))
+                break;
+            case 6:
+                dispatch(setPageNr6(value))
+                break;
+            case 7:
+                dispatch(setPageNr7(value))
+                break;
+            case 8:
+                dispatch(setPageNr8(value))
+                break;
+            case 9:
+                dispatch(setPageNr9(value))
+                break;
+            default:
+                console.log("Error")
+        }
+    }
 
     const setPage = (pageNR: number, toPage: PageType) => {
         switch(pageNR){
@@ -76,7 +110,7 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract,
+        setPage, add, substract, setPageNr,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
         HP, ATK, GOLD
     })

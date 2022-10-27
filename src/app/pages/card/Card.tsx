@@ -14,37 +14,49 @@ const Card = (card: PageType) => {
     const player = usePlayer()
 
     const Swap = (card: PageType) => {
-
-        const Tymczasowe: PageType = card;
     
         let playerPage: PageType;
 
         if(player.page1.typ=="Player"){
-            playerPage=player.page1;
+            player.setPage(card.pageNr!, player.page1)
+            player.setPage(1, card)
+            player.setPageNr(1, card.pageNr!)
         } else if(player.page2.typ=="Player"){
-            playerPage=player.page2;
+            player.setPage(card.pageNr!, player.page2)
+            player.setPage(2, card)
+            player.setPageNr(2, card.pageNr!)
         } else if(player.page3.typ=="Player"){
-            playerPage=player.page3;
+            player.setPage(card.pageNr!, player.page3)
+            player.setPage(3, card)
+            player.setPageNr(3, card.pageNr!)
         } else if(player.page4.typ=="Player"){
-            playerPage=player.page4;
+            player.setPage(card.pageNr!, player.page4)
+            player.setPage(4, card)
+            player.setPageNr(4, card.pageNr!)
         } else if(player.page5.typ=="Player"){
-            playerPage=player.page5;
+            player.setPage(card.pageNr!, player.page5)
+            player.setPage(5, card)
+            player.setPageNr(5, card.pageNr!)
         } else if(player.page6.typ=="Player"){
-            playerPage=player.page6;
+            player.setPage(card.pageNr!, player.page6)
+            player.setPage(6, card)
+            player.setPageNr(6, card.pageNr!)
         } else if(player.page7.typ=="Player"){
-            playerPage=player.page7;
+            player.setPage(card.pageNr!, player.page7)
+            player.setPage(7, card)
+            player.setPageNr(7, card.pageNr!)
         } else if(player.page8.typ=="Player"){
-            playerPage=player.page8;
+            player.setPage(card.pageNr!, player.page8)
+            player.setPage(8, card)
+            player.setPageNr(8, card.pageNr!)
         } else{
-            playerPage=player.page9;
+            player.setPage(card.pageNr!, player.page9)
+            player.setPage(9, card)
+            player.setPageNr(9, card.pageNr!)
         }
         
-        console.log(card.pageNr, playerPage.pageNr)
 
-        player.setPage(card.pageNr!, playerPage)
-    
-        // player.setPage(playerPage.pageNr!, Tymczasowe)
-    
+
     }
 
     switch(card.typ){
@@ -75,6 +87,7 @@ const Card = (card: PageType) => {
     return (
         <div className="card">
             <img src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
+                console.log(card.typ)
                 if(card.typ=="Player") return;
                 if(card.typ=="Blank") Swap(card)
             }}/>

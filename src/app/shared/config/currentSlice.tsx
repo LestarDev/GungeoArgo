@@ -65,32 +65,61 @@ export const currencySlice = createSlice({
       state.GOLD -= action.payload
     },
     setPage2: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page2 = action.payload;
     },
     setPage3: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page3 = action.payload;
     },
     setPage4: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page4 = action.payload;
     },
     setPage5: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page5 = action.payload;
     },
     setPage6: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page6 = action.payload;
     },
     setPage7: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page7 = action.payload;
     },
     setPage8: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page8 = action.payload;
     },
     setPage9: (state, action: PayloadAction<PageType>) => {
-      state.page1 = action.payload;
+      state.page9 = action.payload;
+    },
+
+
+    setPageNr1: (state, action: PayloadAction<number>) => {
+      state.page2.pageNr = action.payload;
+    },
+    setPageNr2: (state, action: PayloadAction<number>) => {
+      state.page2.pageNr = action.payload;
+    },
+    setPageNr3: (state, action: PayloadAction<number>) => {
+      state.page3.pageNr = action.payload;
+    },
+    setPageNr4: (state, action: PayloadAction<number>) => {
+      state.page4.pageNr = action.payload;
+    },
+    setPageNr5: (state, action: PayloadAction<number>) => {
+      state.page5.pageNr = action.payload;
+    },
+    setPageNr6: (state, action: PayloadAction<number>) => {
+      state.page6.pageNr = action.payload;
+    },
+    setPageNr7: (state, action: PayloadAction<number>) => {
+      state.page7.pageNr = action.payload;
+    },
+    setPageNr8: (state, action: PayloadAction<number>) => {
+      state.page8.pageNr = action.payload;
+    },
+    setPageNr9: (state, action: PayloadAction<number>) => {
+      state.page9.pageNr = action.payload;
     },
   },
 })
 
-export const { addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
+export const { setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
 
 export default currencySlice.reducer
