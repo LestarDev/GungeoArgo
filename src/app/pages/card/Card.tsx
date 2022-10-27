@@ -3,6 +3,7 @@ import usePlayer from "../../hook/usePlayer";
 import Blank from "../../shared/components/blank";
 import Player from "../../shared/components/player";
 import PageType from "../../shared/config/pageInterface";
+import randomItem from "../../shared/config/randomItem";
 import "./Card.css"
 
 const Card = (card: PageType) => {
@@ -55,11 +56,26 @@ const Card = (card: PageType) => {
         }
 
     }
-
     const blankPage: PageType = {
         typ: Blank.typ,
         img: Blank.img,
         pageNr: card.pageNr
+    }
+
+    const getRandomPage = (card: PageType) => {
+        const randPage: PageType = randomItem();
+
+        const returnItem: PageType = {
+            typ: randPage.typ,
+            img: randPage.img,
+            item: randPage.item,
+            money: randPage.money,
+            monster: randPage.monster,
+            pageNr: card.pageNr
+        };
+
+        return returnItem;
+
     }
 
     const pickUp = async (card: PageType) => {
@@ -68,13 +84,11 @@ const Card = (card: PageType) => {
         switch(card.item?.typ){
             case "Sword":
                 player.add("ATK", card.item!.power)
-                // player.setPage(card.pageNr!, Blank)
-                Swap(blankPage)
+                Swap(getRandomPage(card))
                 break;
             case "Potion":
                 player.add("HP", card.item!.power)
-                // player.setPage(card.pageNr!, Blank)
-                Swap(blankPage)
+                Swap(getRandomPage(card))
                 break;
             case "Wand":
                 break;
@@ -139,7 +153,7 @@ const Card = (card: PageType) => {
                     if(card.pageNr!=6 && card.pageNr!=8) return
                 }
                 
-                if(card.typ=="Blank") Swap(card)
+                if(card.typ=="Blank") Swap(getRandomPage(card))
                 if(card.typ=="Item") pickUp(card)
                 if(card.typ=="Money") gain(card)
             }}/>
