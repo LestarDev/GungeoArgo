@@ -92,7 +92,7 @@ export const currencySlice = createSlice({
 
 
     setPageNr1: (state, action: PayloadAction<number>) => {
-      state.page2.pageNr = action.payload;
+      state.page1.pageNr = action.payload;
     },
     setPageNr2: (state, action: PayloadAction<number>) => {
       state.page2.pageNr = action.payload;

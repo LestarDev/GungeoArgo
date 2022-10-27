@@ -15,7 +15,7 @@ const Card = (card: PageType) => {
     const player = usePlayer()
 
     const Swap = (card: PageType) => {
-    
+
         if(player.page1.typ=="Player"){
             player.setPage(card.pageNr!, player.page1)
             player.setPage(1, card)
@@ -56,10 +56,32 @@ const Card = (card: PageType) => {
 
     }
 
+    const pickUp = async (card: PageType) => {
+
+        const blankPage: PageType = {
+            typ: Blank.typ,
+            img: Blank.img,
+            pageNr: card.pageNr
+        }
+
+        switch(card.item?.typ){
+            case "Sword":
+                player.add("ATK", card.item!.power)
+                player.setPage(card.pageNr!, Blank)
+                Swap(blankPage)
+                break;
+            case "Potion":
+                break;
+            case "Wand":
+                break;
+            default:
+
+        }
+    }
+
     switch(card.typ){
         case "Item":
             if(!card.item) player.setPage(card.pageNr!, Blank)
-            console.log(card)
             name=card.item!.name
             value=card.item!.power+""
             break;
@@ -86,8 +108,10 @@ const Card = (card: PageType) => {
     return (
         <div className="card">
             <img src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
+                console.log(card.pageNr)
                 if(card.typ=="Player") return;
                 if(card.typ=="Blank") Swap(card)
+                if(card.typ=="Item") pickUp(card)
             }}/>
             <div>
                 <p>{name}</p>

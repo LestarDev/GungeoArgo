@@ -9,6 +9,29 @@ const usePlayer = () => {
     const dispatch = useDispatch();
     const {ATK, HP, GOLD, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
 
+    const getPage = (pageNr: number) => {
+        switch(pageNr){
+            case 1:
+                return page1
+            case 2:
+                return page2
+            case 3:
+                return page3
+            case 4:
+                return page4
+            case 5:
+                return page5
+            case 6:
+                return page6
+            case 7:
+                return page7
+            case 8:
+                return page8
+            default:
+                return page9
+        }
+    }
+
     const setPageNr = (pageNr: number, value: number) => {
         switch(pageNr){
             case 1:
@@ -110,7 +133,7 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract, setPageNr,
+        setPage, add, substract, setPageNr, getPage,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
         HP, ATK, GOLD
     })
