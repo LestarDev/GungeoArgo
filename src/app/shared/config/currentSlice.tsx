@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import PageType from './pageInterface'
-import Blank from '../components/blank'
 import Player from '../components/player'
-import GoldCoin1 from '../components/Money/goldCoin1'
-
+import randomItem from './randomItem'
 
 // Define a type for the slice state
 interface CounterState {
@@ -24,15 +22,15 @@ interface CounterState {
 
 // Define the initial state using that type
 const initialState: CounterState = {
-  page1: Blank,
-  page2: Blank,
-  page3: Blank,
-  page4: Blank,
+  page1: randomItem(),
+  page2: randomItem(),
+  page3: randomItem(),
+  page4: randomItem(),
   page5: Player,
-  page6: GoldCoin1,
-  page7: Blank,
-  page8: Blank,
-  page9: Blank,
+  page6: randomItem(),
+  page7: randomItem(),
+  page8: randomItem(),
+  page9: randomItem(),
   ATK: 1,
   HP: 10,
   GOLD: 0

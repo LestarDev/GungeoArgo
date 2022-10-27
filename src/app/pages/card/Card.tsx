@@ -64,17 +64,16 @@ const Card = (card: PageType) => {
 
     const pickUp = async (card: PageType) => {
 
-        
 
         switch(card.item?.typ){
             case "Sword":
                 player.add("ATK", card.item!.power)
-                player.setPage(card.pageNr!, Blank)
+                // player.setPage(card.pageNr!, Blank)
                 Swap(blankPage)
                 break;
             case "Potion":
                 player.add("HP", card.item!.power)
-                player.setPage(card.pageNr!, Blank)
+                // player.setPage(card.pageNr!, Blank)
                 Swap(blankPage)
                 break;
             case "Wand":
