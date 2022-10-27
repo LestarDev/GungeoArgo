@@ -3,8 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import PageType from './pageInterface'
 import Blank from '../components/blank'
 import Player from '../components/player'
-import WoodenSword from '../components/items/woodenSword'
-import HealPotion2 from '../components/items/healPotion2'
+import GoldCoin1 from '../components/Money/goldCoin1'
 
 
 // Define a type for the slice state
@@ -30,7 +29,7 @@ const initialState: CounterState = {
   page3: Blank,
   page4: Blank,
   page5: Player,
-  page6: HealPotion2,
+  page6: GoldCoin1,
   page7: Blank,
   page8: Blank,
   page9: Blank,

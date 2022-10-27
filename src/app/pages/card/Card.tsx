@@ -56,13 +56,15 @@ const Card = (card: PageType) => {
 
     }
 
+    const blankPage: PageType = {
+        typ: Blank.typ,
+        img: Blank.img,
+        pageNr: card.pageNr
+    }
+
     const pickUp = async (card: PageType) => {
 
-        const blankPage: PageType = {
-            typ: Blank.typ,
-            img: Blank.img,
-            pageNr: card.pageNr
-        }
+        
 
         switch(card.item?.typ){
             case "Sword":
@@ -80,6 +82,11 @@ const Card = (card: PageType) => {
             default:
 
         }
+    }
+
+    const gain = (card: PageType) => {
+        player.add("GOLD", card.money!.count)
+        Swap(blankPage)
     }
 
     switch(card.typ){
@@ -135,6 +142,7 @@ const Card = (card: PageType) => {
                 
                 if(card.typ=="Blank") Swap(card)
                 if(card.typ=="Item") pickUp(card)
+                if(card.typ=="Money") gain(card)
             }}/>
             <div>
                 <p>{name}</p>
