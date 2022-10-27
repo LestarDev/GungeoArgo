@@ -4,7 +4,7 @@ import WoodenSword from "../components/items/woodenSword"
 import GoldCoin1 from "../components/Money/goldCoin1"
 import PageType from "./pageInterface"
 
-function randomItem() {
+function randomItem(): PageType {
 
     const Pages: PageType[] = [
         Blank, Blank, Blank, GoldCoin1, HealPotion2, WoodenSword
