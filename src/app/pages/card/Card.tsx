@@ -111,8 +111,28 @@ const Card = (card: PageType) => {
     return (
         <div className="card">
             <img src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
-                console.log(card.pageNr)
                 if(card.typ=="Player") return;
+                
+                if(player.page1.typ=="Player"){
+                    if(card.pageNr!=2 && card.pageNr!=4) return
+                } else if(player.page2.typ=="Player"){
+                    if(card.pageNr!=1 && card.pageNr!=3 && card.pageNr!=5) return
+                } else if(player.page3.typ=="Player"){
+                    if(card.pageNr!=2 && card.pageNr!=6) return
+                } else if(player.page4.typ=="Player"){
+                    if(card.pageNr!=1 && card.pageNr!=5 && card.pageNr!=7) return
+                } else if(player.page5.typ=="Player"){
+                    if(card.pageNr!=2 && card.pageNr!=4 && card.pageNr!=6 && card.pageNr!=8) return
+                } else if(player.page6.typ=="Player"){
+                    if(card.pageNr!=3 && card.pageNr!=5 && card.pageNr!=9) return
+                } else if(player.page7.typ=="Player"){
+                    if(card.pageNr!=4 && card.pageNr!=8) return
+                } else if(player.page8.typ=="Player"){
+                    if(card.pageNr!=5 && card.pageNr!=7 && card.pageNr!=9) return
+                } else{
+                    if(card.pageNr!=6 && card.pageNr!=8) return
+                }
+                
                 if(card.typ=="Blank") Swap(card)
                 if(card.typ=="Item") pickUp(card)
             }}/>
