@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import usePlayer from "../../hook/usePlayer";
+import Blank from "../../shared/components/blank";
 import Player from "../../shared/components/player";
 import PageType from "../../shared/config/pageInterface";
 import "./Card.css"
@@ -15,8 +16,6 @@ const Card = (card: PageType) => {
 
     const Swap = (card: PageType) => {
     
-        let playerPage: PageType;
-
         if(player.page1.typ=="Player"){
             player.setPage(card.pageNr!, player.page1)
             player.setPage(1, card)
@@ -54,13 +53,13 @@ const Card = (card: PageType) => {
             player.setPage(9, card)
             player.setPageNr(9, card.pageNr!)
         }
-        
-
 
     }
 
     switch(card.typ){
         case "Item":
+            if(!card.item) player.setPage(card.pageNr!, Blank)
+            console.log(card)
             name=card.item!.name
             value=card.item!.power+""
             break;
@@ -87,7 +86,6 @@ const Card = (card: PageType) => {
     return (
         <div className="card">
             <img src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
-                console.log(card.typ)
                 if(card.typ=="Player") return;
                 if(card.typ=="Blank") Swap(card)
             }}/>

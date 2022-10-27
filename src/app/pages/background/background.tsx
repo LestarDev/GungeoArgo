@@ -7,73 +7,39 @@ const Background = () => {
 
     const player = usePlayer();
 
-    const cordinatePage1: PageType = {
-        typ: player.page1.typ,
-        img: player.page1.img,
-        pageNr: 1
-    }
-
-    const cordinatePage2: PageType = {
-        typ: player.page2.typ,
-        img: player.page2.img,
-        pageNr: 2
-    }
-
-    const cordinatePage3: PageType = {
-        typ: player.page3.typ,
-        img: player.page3.img,
-        pageNr: 3
-    }
-
-    const cordinatePage4: PageType = {
-        typ: player.page4.typ,
-        img: player.page4.img,
-        pageNr: 4
-    }
-
-    const cordinatePage5: PageType = {
-        typ: player.page5.typ,
-        img: player.page5.img,
-        pageNr: 5
-    }
-
-    const cordinatePage6: PageType = {
-        typ: player.page6.typ,
-        img: player.page6.img,
-        pageNr: 6
-    }
-
-    const cordinatePage7: PageType = {
-        typ: player.page7.typ,
-        img: player.page7.img,
-        pageNr: 7
-    }
-
-    const cordinatePage8: PageType = {
-        typ: player.page8.typ,
-        img: player.page8.img,
-        pageNr: 8
-    }
-
-    const cordinatePage9: PageType = {
-        typ: player.page9.typ,
-        img: player.page9.img,
-        pageNr: 9
-    }
 
     return (
-        <div className="cardWrapper">
-            <Card {...cordinatePage1} />
-            <Card {...cordinatePage2} />
-            <Card {...cordinatePage3} />
+        <div className="cardWrapper" onLoad={(e: any)=>{
+            player.setPageNr(1, 1)
 
-            <Card {...cordinatePage4} />
-            <Card {...cordinatePage5} />
-            <Card {...cordinatePage6} />
+            player.setPageNr(2, 2)
+        
+            player.setPageNr(3, 3)
+        
+            player.setPageNr(4, 4)
+        
+            player.setPageNr(5, 5)
+        
+            player.setPageNr(6, 6)
+        
+            player.setPageNr(7, 7)
+        
+            player.setPageNr(8, 8)
+        
+            player.setPageNr(9, 9)
+        
+        }}>
+            <Card {...player.page1} />
+            <Card {...player.page2} />
+            <Card {...player.page3} />
 
-            <Card {...cordinatePage7} />
-            <Card {...cordinatePage8} />
-            <Card {...cordinatePage9} />
+            <Card {...player.page4} />
+            <Card {...player.page5} />
+            <Card {...player.page6} />
+
+            <Card {...player.page7} />
+            <Card {...player.page8} />
+            <Card {...player.page9} />
         </div>
     )
 }

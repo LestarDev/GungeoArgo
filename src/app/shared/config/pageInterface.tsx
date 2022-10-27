@@ -6,18 +6,18 @@ type ItemTyp = "Potion" | "Sword" | "Wand"
 
 type MoneyTyp = "Coin" | "Rubin"
 
-interface Money {
+export interface Money {
     count: number,
     typ: MoneyTyp
 }
 
-interface Monster {
+export interface Monster {
     HP: number,
     name: string,
     subType?: MonsterTyp
 }
 
-interface Item {
+export interface Item {
     power: number,
     name: string,
     typ: ItemTyp
