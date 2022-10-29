@@ -1,11 +1,13 @@
 .card{
     max-width: 14vw;
     width: 14vw;
-    border: 3px solid #afbfd2;
+    border: 3px outset #afbfd2;
     height: 22vh;
     margin: auto;
     gap: 10px;
     background-color: #4f6781;
+    border-radius: 5%;
+    color: black;
 }
 
 .card img{

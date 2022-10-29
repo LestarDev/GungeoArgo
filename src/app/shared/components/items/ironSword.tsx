@@ -5,7 +5,7 @@ const IronSword: PageType = {
     typ: "Item",
     img: ironSwordIcon,
     item: {
-        name: "IronSword",
+        name: "Iron Sword",
         power: 2,
         typ: "Sword"
     }
