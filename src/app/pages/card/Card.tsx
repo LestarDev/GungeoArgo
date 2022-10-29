@@ -10,6 +10,10 @@ import heartIcon from "./../../../assets/health.png"
 
 const Card = (card: PageType) => {
 
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
     let name: string = ""
     let value: string = ""
     let icon: string = ""
@@ -186,16 +190,29 @@ const Card = (card: PageType) => {
             classNamePlayer="Player"
             classNameIcon="true"
             icon=attackIcon
+            if(cardRef.current) cardRef.current!.style.transform="";
             break;
         default:
             
     }
 
+    const check = async (card: PageType) => {
+        await delay(100)
+        
+        if(card.typ=="Blank") Swap(getRandomPage(card))
+        if(card.typ=="Item") pickUp(card)
+        if(card.typ=="Money") gain(card)
+        if(card.typ=="Monster") fight(card)
+
+        cardRef.current!.style.transform="";
+
+    }
+    
     return (
-        <div className="card">
+        <div className="card" ref={cardRef}>
             <img className={classNamePlayer} src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
                 if(card.typ=="Player") return;
-                
+
                 if(player.page1.typ=="Player"){
                     if(card.pageNr!=2 && card.pageNr!=4) return
                 } else if(player.page2.typ=="Player"){
@@ -216,10 +233,10 @@ const Card = (card: PageType) => {
                     if(card.pageNr!=6 && card.pageNr!=8) return
                 }
                 
-                if(card.typ=="Blank") Swap(getRandomPage(card))
-                if(card.typ=="Item") pickUp(card)
-                if(card.typ=="Money") gain(card)
-                if(card.typ=="Monster") fight(card)
+                cardRef.current!.style.transform="rotateY(360deg)";
+
+                check(card);
+                
             }}/>
             <div>
                 <p>&nbsp;{name}</p>
