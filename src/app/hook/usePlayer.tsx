@@ -1,13 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import PageType from "../shared/config/pageInterface";
-import { setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
+import { dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
 
 type changeTyp = "ATK" | "HP" | "GOLD"
 
 const usePlayer = () => {
 
     const dispatch = useDispatch();
-    const {ATK, HP, GOLD, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+    const {ATK, HP, GOLD, DamageType, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+
+    const setPlayerDamageType = (typ: dmgTyp) => {
+        dispatch(setDamageType(typ));
+    }
 
     const getPage = (pageNr: number) => {
         switch(pageNr){
@@ -133,9 +137,9 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
-        HP, ATK, GOLD
+        HP, ATK, GOLD, DamageType
     })
 
 }

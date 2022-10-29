@@ -1,6 +1,6 @@
 type Typ = "Money" | "Blank" | "Monster" | "Item" | "Player";
 
-type MonsterTyp = "Fire" | "Ice";
+type Types = "Fire" | "Ice";
 
 type ItemTyp = "Potion" | "Sword" | "Wand"
 
@@ -14,13 +14,14 @@ export interface Money {
 export interface Monster {
     HP: number,
     name: string,
-    subType?: MonsterTyp
+    subType?: Types
 }
 
 export interface Item {
     power: number,
     name: string,
-    typ: ItemTyp
+    typ: ItemTyp,
+    subType?: Types
 }
 
 interface PageType {

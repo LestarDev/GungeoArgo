@@ -4,6 +4,8 @@ import PageType from './pageInterface'
 import Player from '../components/player'
 import randomItem from './randomItem'
 
+export type dmgTyp = "Normal" | "Fire" | "Ice";
+
 // Define a type for the slice state
 interface CounterState {
   page1: PageType,
@@ -17,7 +19,8 @@ interface CounterState {
   page9: PageType,
   ATK: number,
   HP: number,
-  GOLD: number
+  GOLD: number,
+  DamageType: dmgTyp
 }
 
 // Define the initial state using that type
@@ -33,7 +36,8 @@ const initialState: CounterState = {
   page9: randomItem(),
   ATK: 1,
   HP: 10,
-  GOLD: 0
+  GOLD: 0,
+  DamageType: "Normal"
 }
 
 export const currencySlice = createSlice({
@@ -116,9 +120,12 @@ export const currencySlice = createSlice({
     setPageNr9: (state, action: PayloadAction<number>) => {
       state.page9.pageNr = action.payload;
     },
+    setDamageType: (state, action: PayloadAction<dmgTyp>) => {
+      state.DamageType = action.payload;
+    }
   },
 })
 
-export const { setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
+export const { setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
 
 export default currencySlice.reducer

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import usePlayer from "../../hook/usePlayer";
 import Blank from "../../shared/components/blank";
+import GoldCoin1 from "../../shared/components/Money/goldCoin1";
 import PageType from "../../shared/config/pageInterface";
 import randomItem from "../../shared/config/randomItem";
 import "./Card.css"
@@ -11,6 +12,8 @@ const Card = (card: PageType) => {
     let value: string = ""
 
     let classNameHide = "";
+
+    let classNamePlayer = ""
 
     const player = usePlayer()
 
@@ -56,6 +59,16 @@ const Card = (card: PageType) => {
 
     }
 
+    const getGold = (card: PageType) => {
+        const gold: PageType = {
+            typ: GoldCoin1.typ,
+            img: GoldCoin1.img,
+            money: GoldCoin1.money,
+            pageNr: card.pageNr
+        }
+        return gold
+    }
+
     const getRandomPage = (card: PageType) => {
         const randPage: PageType = randomItem();
 
@@ -96,6 +109,44 @@ const Card = (card: PageType) => {
         Swap(getRandomPage(card))
     }
 
+    const fight = (card: PageType) => {
+        let dmgTo: number = 0;
+        if(card.monster?.subType) {
+            if(card.monster.subType==player.DamageType) {player.substract("HP",1); Swap(card); return}
+            
+            if(card.monster.subType=="Fire" && player.DamageType=="Ice") {
+                console.log("Double dmg, line 106 Card.tsx")   
+            }
+
+        }
+
+        if(player.ATK>=card.monster!.HP) {
+            player.substract("ATK", card.monster!.HP)
+            // player.setPage(card.pageNr!, GoldCoin1)
+            Swap(getGold(card))
+            return
+        } else {
+            const minusHp: number = card.monster!.HP-player.ATK;
+            const minusHpMonster: PageType = {
+                typ: "Monster",
+                img: card.img,
+                monster: {
+                    name: card.monster!.name,
+                    HP: minusHp,
+                    subType: card.monster!.subType
+                }
+            }
+            player.substract("ATK", player.ATK)
+            if(card.monster!.HP>=player.HP){
+                console.log("Dead")
+            } else {
+                player.substract("HP", card.monster!.HP)
+            }
+            player.setPage(card.pageNr!, minusHpMonster)
+        }
+        
+    }
+
     switch(card.typ){
         case "Item":
             if(!card.item) player.setPage(card.pageNr!, Blank)
@@ -117,6 +168,7 @@ const Card = (card: PageType) => {
         case "Player":
             name="Ty"
             value=player.ATK
+            classNamePlayer="Player"
             break;
         default:
             
@@ -124,7 +176,7 @@ const Card = (card: PageType) => {
 
     return (
         <div className="card">
-            <img src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
+            <img className={classNamePlayer} src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
                 if(card.typ=="Player") return;
                 
                 if(player.page1.typ=="Player"){
@@ -150,6 +202,7 @@ const Card = (card: PageType) => {
                 if(card.typ=="Blank") Swap(getRandomPage(card))
                 if(card.typ=="Item") pickUp(card)
                 if(card.typ=="Money") gain(card)
+                if(card.typ=="Monster") fight(card)
             }}/>
             <div>
                 <p>{name}</p>

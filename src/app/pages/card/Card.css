@@ -7,8 +7,12 @@
 }
 
 .card img{
-    width: 15vw;
+    width: 10vw;
     cursor: pointer;
+}
+
+.card img.Player{
+    width: 15vw;
 }
 
 .card div{

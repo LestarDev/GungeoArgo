@@ -1,11 +1,12 @@
 import PageType, { Item } from "../../config/pageInterface";
+import woodenSwordIcon from "./../../../../assets/wooden_sword.png"
 
 const WoodenSword: PageType = {
     typ: "Item",
-    img: "",
+    img: woodenSwordIcon,
     item: {
         name: "WoodenSword",
-        power: 2,
+        power: 1,
         typ: "Sword"
     }
 }
