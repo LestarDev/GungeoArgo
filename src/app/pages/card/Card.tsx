@@ -5,16 +5,20 @@ import GoldCoin1 from "../../shared/components/Money/goldCoin1";
 import PageType from "../../shared/config/pageInterface";
 import randomItem from "../../shared/config/randomItem";
 import "./Card.css"
+import attackIcon from "./../../../assets/attack.png"
 import heartIcon from "./../../../assets/health.png"
 
 const Card = (card: PageType) => {
 
     let name: string = ""
     let value: string = ""
+    let icon: string = ""
 
     let classNameHide = "";
 
     let classNamePlayer = ""
+
+    let classNameIcon = "";
 
     const player = usePlayer()
 
@@ -135,7 +139,8 @@ const Card = (card: PageType) => {
                     name: card.monster!.name,
                     HP: minusHp,
                     subType: card.monster!.subType
-                }
+                },
+                pageNr: card.pageNr
             }
             player.substract("ATK", player.ATK)
             if(card.monster!.HP>=player.HP){
@@ -143,7 +148,7 @@ const Card = (card: PageType) => {
             } else {
                 player.substract("HP", card.monster!.HP)
             }
-            player.setPage(card.pageNr!, minusHpMonster)
+            Swap(minusHpMonster)
         }
         
     }
@@ -153,10 +158,19 @@ const Card = (card: PageType) => {
             if(!card.item) player.setPage(card.pageNr!, Blank)
             name=card.item!.name
             value=card.item!.power+""
+            classNameIcon="true"
+            if(card.item!.typ=="Sword"){
+                icon=attackIcon
+            } else {
+                icon=heartIcon
+            }
+            
             break;
         case "Monster":
             name=card.monster!.name
             value=card.monster!.HP+""
+            classNameIcon="true"
+            icon=heartIcon
             break;
         case "Money":
             name=card.money!.typ
@@ -170,6 +184,8 @@ const Card = (card: PageType) => {
             name="Ty"
             value=player.ATK
             classNamePlayer="Player"
+            classNameIcon="true"
+            icon=attackIcon
             break;
         default:
             
@@ -207,7 +223,7 @@ const Card = (card: PageType) => {
             }}/>
             <div>
                 <p>&nbsp;{name}</p>
-                <div className={classNamePlayer}><img className="heart" src={heartIcon} alt="Heart" /></div>
+                <div className={classNameIcon}><img className="heart" src={icon} alt="Heart" /></div>
                 <span className={classNameHide}>{value}</span>
 
             </div>

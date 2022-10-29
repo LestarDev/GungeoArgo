@@ -3,6 +3,9 @@
     right: 5%;
     top: 5%;
     transform: translate(5%, 5%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Layout div:nth-child(2){
