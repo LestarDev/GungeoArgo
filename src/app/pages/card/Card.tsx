@@ -5,6 +5,7 @@ import GoldCoin1 from "../../shared/components/Money/goldCoin1";
 import PageType from "../../shared/config/pageInterface";
 import randomItem from "../../shared/config/randomItem";
 import "./Card.css"
+import heartIcon from "./../../../assets/health.png"
 
 const Card = (card: PageType) => {
 
@@ -205,8 +206,10 @@ const Card = (card: PageType) => {
                 if(card.typ=="Monster") fight(card)
             }}/>
             <div>
-                <p>{name}</p>
-                <span className={classNameHide}>{value}&nbsp;</span>
+                <p>&nbsp;{name}</p>
+                <div className={classNamePlayer}><img className="heart" src={heartIcon} alt="Heart" /></div>
+                <span className={classNameHide}>{value}</span>
+
             </div>
         </div>
     )

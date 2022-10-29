@@ -18,10 +18,19 @@
 .card div{
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
 .card div span.hide{
     display: none;
+}
+
+.card div div img{
+    display: none;
+}
+
+.card div div.Player img{
+    display: block;
+    width: 2vw;
 }
