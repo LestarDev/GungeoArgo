@@ -1,0 +1,38 @@
+@keyframes showBoss {
+    from{
+        transform: translateY(-50%) scale(0);
+    }
+    to{
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+div.hideBoss{
+    display: none;
+}
+
+.bossAbsolut{
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    padding: 1rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    background-color: #e4a672;
+    border: 5px inset #743f39;
+    width: 15vw;
+    border-radius: 5%;
+}
+
+div.boss{
+    animation: showBoss 0.8s ease-out forwards;
+}
+
+.bossAbsolut span{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    background: linear-gradient(to right, black, #327345, #193d3f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
