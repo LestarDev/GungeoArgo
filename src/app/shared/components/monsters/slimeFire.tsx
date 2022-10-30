@@ -1,8 +1,9 @@
 import PageType from "../../config/pageInterface";
+import fireSlimeIcon from "./../../../../assets/fire_slime.png"
 
 const fireSlime: PageType = {
     typ: "Monster",
-    img: "",
+    img: fireSlimeIcon,
     monster: {
         HP: 2,
         name: "Fire Slime",

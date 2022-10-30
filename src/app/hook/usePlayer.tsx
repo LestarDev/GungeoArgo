@@ -137,6 +137,26 @@ const usePlayer = () => {
         }
     }
 
+    const addFire = () => {
+        const currentRound: ThisRound = {
+            untilFired: RoundEffect.untilFired+1,
+            untilPoisonEffect: RoundEffect.untilPoisonEffect,
+            untilSuperAbility: RoundEffect.untilSuperAbility,
+            iced: RoundEffect.iced
+        }
+        return currentRound
+    }
+
+    const addIce = () => {
+        const currentRound: ThisRound = {
+            untilFired: RoundEffect.untilFired,
+            untilPoisonEffect: RoundEffect.untilPoisonEffect,
+            untilSuperAbility: RoundEffect.untilSuperAbility,
+            iced: RoundEffect.iced+1
+        }
+        return currentRound
+    }
+
     const nextRound = () => {
         const untilFiredValue: number =  RoundEffect.untilFired==0 ? 0 : 1;
         const untilPoisonEffectValue: number = RoundEffect.untilPoisonEffect==0 ? 0 : 1;
@@ -152,7 +172,7 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
         HP, ATK, GOLD, DamageType, RoundEffect
     })

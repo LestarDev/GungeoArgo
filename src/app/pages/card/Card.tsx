@@ -135,7 +135,6 @@ const Card = (card: PageType) => {
     }
 
     const fight = (card: PageType) => {
-        let dmgTo: number = 0;
         if(card.monster?.subType) {
             if(card.monster.subType==player.DamageType) {player.substract("HP",1); Swap(card); return}
             
@@ -151,6 +150,18 @@ const Card = (card: PageType) => {
             Swap(getGold(card))
             return
         } else {
+            if(card.monster?.subType){
+                switch(card.monster.subType){
+                    case "Fire":
+                        player.addFire()
+                        break;
+                    case "Ice":
+                        player.addIce()
+                        break;
+                    default:
+                        console.log("Error, Cad.tsx Fight subtyp")
+                }
+            }
             const minusHp: number = card.monster!.HP-player.ATK;
             if(player.ATK==0){
                 player.substract("HP", card.monster!.HP-player.ATK)
@@ -255,6 +266,12 @@ const Card = (card: PageType) => {
                 }
                 
                 cardRef.current!.style.transform="rotateY(360deg)";
+                
+                if(player.DamageType.untilFired>0) player.substract("HP", 1)
+                if(player.DamageType.untilPoisonEffect>0) player.substract("HP", 1)
+                if(player.DamageType.iced>0) player.substract("HP", 0)
+
+                console.log("Fire: ", player.RoundEffect.untilFired, " | Ice: ", player.RoundEffect.iced)
 
                 player.nextRound()
                 check(card);

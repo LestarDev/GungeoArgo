@@ -10,6 +10,8 @@ import GoldCoin2 from "../components/Money/goldCoin2"
 import GoldCoin3 from "../components/Money/goldCoin3"
 import Skeleton from "../components/monsters/skeleton"
 import Slime from "../components/monsters/slime"
+import fireSlime from "../components/monsters/slimeFire"
+import iceSlime from "../components/monsters/slimeIce"
 import PageType from "./pageInterface"
 
 function randomItem(): PageType {
@@ -20,7 +22,7 @@ function randomItem(): PageType {
         HealPotion1, HealPotion2, HealPotionBig, 
         WoodenSword, IronSword,
         // NobleSword,
-        Slime, Slime, Slime, Skeleton
+        Slime, Slime, fireSlime, iceSlime, Skeleton
     ]
 
     return (

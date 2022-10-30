@@ -21,6 +21,8 @@ const Layout = () => {
             dmgIcon=normalIcon
     }
 
+    
+
     return (
         <div className="Layout">
             <div><span>{player.HP}/15</span>
