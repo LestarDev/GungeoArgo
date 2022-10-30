@@ -292,6 +292,8 @@ const Card = (card: PageType) => {
 
                 check(card);
             
+                if(player.GOLD>=300) player.setBoss(true)
+
                 if(player.HP<=0) console.log("Dead")
 
             }}/>

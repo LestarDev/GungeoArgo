@@ -22,7 +22,8 @@ interface CounterState {
   HP: number,
   GOLD: number,
   DamageType: dmgTyp,
-  RoundEffect: ThisRound
+  RoundEffect: ThisRound,
+  isBoss: boolean
 }
 
 // Define the initial state using that type
@@ -40,7 +41,8 @@ const initialState: CounterState = {
   HP: 10,
   GOLD: 0,
   DamageType: "Normal",
-  RoundEffect: initThisRound
+  RoundEffect: initThisRound,
+  isBoss: false
 }
 
 export const currencySlice = createSlice({
@@ -128,10 +130,16 @@ export const currencySlice = createSlice({
     },
     setRoundEffect: (state, action: PayloadAction<ThisRound>) => {
       state.RoundEffect = action.payload;
-    }
+    },
+    bossIsTrue: (state) => {
+      state.isBoss = true;
+    },
+    bossIsFalse: (state) => {
+      state.isBoss = false;
+    },
   },
 })
 
-export const { setRoundEffect, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
+export const { bossIsFalse, bossIsTrue, setRoundEffect, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
 
 export default currencySlice.reducer

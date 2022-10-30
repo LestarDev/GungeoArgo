@@ -7,9 +7,12 @@ const Background = () => {
 
     const player = usePlayer();
 
+    let classNameWrapper: string = "cardWrapper"
+
+    if(player.isBoss) classNameWrapper="cardWrapperBoss"
 
     return (
-        <div className="cardWrapper" onLoad={(e: any)=>{
+        <div className={classNameWrapper} onLoad={(e: any)=>{
             player.setPageNr(1, 1)
 
             player.setPageNr(2, 2)
