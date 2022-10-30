@@ -22,7 +22,8 @@ function randomItem(): PageType {
         HealPotion1, HealPotion2, HealPotionBig, 
         WoodenSword, IronSword,
         // NobleSword,
-        Slime, Slime, fireSlime, iceSlime, Skeleton
+        Slime, Slime, fireSlime, iceSlime, 
+        // Skeleton
     ]
 
     return (

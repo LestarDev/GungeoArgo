@@ -137,9 +137,9 @@ const usePlayer = () => {
         }
     }
 
-    const addFire = () => {
+    const addFire = (n: number) => {
         const currentRound: ThisRound = {
-            untilFired: RoundEffect.untilFired+1,
+            untilFired: RoundEffect.untilFired+n,
             untilPoisonEffect: RoundEffect.untilPoisonEffect,
             untilSuperAbility: RoundEffect.untilSuperAbility,
             iced: RoundEffect.iced
@@ -147,12 +147,12 @@ const usePlayer = () => {
         dispatch(setRoundEffect(currentRound))
     }
 
-    const addIce = () => {
+    const addIce = (n: number) => {
         const currentRound: ThisRound = {
             untilFired: RoundEffect.untilFired,
             untilPoisonEffect: RoundEffect.untilPoisonEffect,
             untilSuperAbility: RoundEffect.untilSuperAbility,
-            iced: RoundEffect.iced+1
+            iced: RoundEffect.iced+n
         }
         dispatch(setRoundEffect(currentRound))
     }

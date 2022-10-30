@@ -40,3 +40,15 @@
     display: block;
     width: 2vw;
 }
+
+.card div.absolut{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    transform: translate(5%, 5%);
+}
+
+.card div.absolut img{
+    width: 2vw;
+    height: 2vw;
+}

@@ -17,6 +17,11 @@
     align-items: flex-end;
 }
 
+.Layout div:nth-child(4){
+    display: flex;
+    align-items: center;
+}
+
 .Layout div img{
     max-width: 3vw;
 }

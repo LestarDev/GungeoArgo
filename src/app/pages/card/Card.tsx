@@ -9,6 +9,8 @@ import attackIcon from "./../../../assets/attack.png"
 import heartIcon from "./../../../assets/health.png"
 import GoldCoin2 from "../../shared/components/Money/goldCoin2";
 import GoldCoin3 from "../../shared/components/Money/goldCoin3";
+import fireIcon from "./../../../assets/fire_icon.png"
+import iceIcon from "./../../../assets/snow_icon.png"
 
 const Card = (card: PageType) => {
 
@@ -19,12 +21,15 @@ const Card = (card: PageType) => {
     let name: string = ""
     let value: string = ""
     let icon: string = ""
+    let typeIcon: string = ""
 
     let classNameHide = "";
 
     let classNamePlayer = ""
 
     let classNameIcon = "";
+
+    let classNameTypeIcon = "hide";
 
     const player = usePlayer()
 
@@ -151,12 +156,13 @@ const Card = (card: PageType) => {
             return
         } else {
             if(card.monster?.subType){
+                const v: number = Math.floor(Math.random()*card.monster.HP)+1
                 switch(card.monster.subType){
                     case "Fire":
-                        player.addFire()
+                        player.addFire(v)
                         break;
                     case "Ice":
-                        player.addIce()
+                        player.addIce(v)
                         break;
                     default:
                         console.log("Error, Cad.tsx Fight subtyp")
@@ -207,6 +213,14 @@ const Card = (card: PageType) => {
             value=card.monster!.HP+""
             classNameIcon="true"
             icon=heartIcon
+            if(card.monster!.subType){
+                if(card.monster!.subType=="Fire"){
+                    typeIcon=fireIcon
+                } else {
+                    typeIcon=iceIcon
+                }
+                classNameTypeIcon="absolut"
+            }
             break;
         case "Money":
             name=card.money!.typ
@@ -286,6 +300,9 @@ const Card = (card: PageType) => {
                 <div className={classNameIcon}><img className="heart" src={icon} alt="Heart" /></div>
                 <span className={classNameHide}>{value}</span>
 
+            </div>
+            <div className={classNameTypeIcon}>
+                <img src={typeIcon} alt="" />
             </div>
         </div>
     )
