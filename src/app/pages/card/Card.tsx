@@ -185,11 +185,9 @@ const Card = (card: PageType) => {
                 pageNr: card.pageNr
             }
             player.substract("ATK", player.ATK)
-            if(card.monster!.HP>=player.HP){
-                console.log("Dead")
-            } else {
-                player.substract("HP", card.monster!.HP-player.ATK)
-            }
+            
+            player.substract("HP", card.monster!.HP-player.ATK)
+            
             Swap(minusHpMonster)
         }
         
@@ -293,7 +291,9 @@ const Card = (card: PageType) => {
                 }
 
                 check(card);
-                
+            
+                if(player.HP<=0) console.log("Dead")
+
             }}/>
             <div>
                 <p>&nbsp;{name}</p>

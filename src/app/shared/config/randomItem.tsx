@@ -19,7 +19,7 @@ function randomItem(): PageType {
     const Pages: PageType[] = [
         Blank, Blank, Blank, Blank, 
         GoldCoin1, GoldCoin1, GoldCoin2, GoldCoin3, 
-        HealPotion1, HealPotion2, HealPotionBig, 
+        HealPotion1, HealPotion1, HealPotion2, HealPotionBig, 
         WoodenSword, WoodenSword, IronSword,
         // NobleSword,
         Slime, Slime, Slime, fireSlime, fireSlime, iceSlime, iceSlime 
