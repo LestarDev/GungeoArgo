@@ -1,20 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
+import BossType from "../shared/config/bossInterface";
 import PageType from "../shared/config/pageInterface";
 import ThisRound from "../shared/config/roundInterface";
-import { bossIsFalse, bossIsTrue, setRoundEffect, dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
+import { setBoss, bossIsFalse, bossIsTrue, setRoundEffect, dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
 
 type changeTyp = "ATK" | "HP" | "GOLD"
 
 const usePlayer = () => {
 
     const dispatch = useDispatch();
-    const {ATK, HP, GOLD, DamageType, RoundEffect, isBoss, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+    const {ATK, HP, GOLD, DamageType, RoundEffect, isBoss, currentBoss, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+
+    const setCurrentBoss = (boss: BossType) => {
+        dispatch(setBoss(boss))
+    }
 
     const setPlayerDamageType = (typ: dmgTyp) => {
         dispatch(setDamageType(typ));
     }
 
-    const setBoss =  (v: boolean) => {
+    const setBossValue =  (v: boolean) => {
         v ? dispatch(bossIsTrue()) : dispatch(bossIsFalse())
     }
 
@@ -186,9 +191,9 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBoss,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBossValue, setCurrentBoss,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
-        HP, ATK, GOLD, DamageType, RoundEffect, isBoss
+        HP, ATK, GOLD, DamageType, RoundEffect, isBoss, currentBoss
     })
 
 }

@@ -1,9 +1,9 @@
-import BossType from "../../config/bosses/bossInterface";
+import BossType from "../../config/bossInterface";
 
 const SlimeKing: BossType =  {
     HP: 20,
     ATK: 1,
-    subType: "Normal",
+    subType: "Fire",
     untilSuperAbility: 5
 }
 

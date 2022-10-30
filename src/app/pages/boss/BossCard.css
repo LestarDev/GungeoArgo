@@ -29,8 +29,9 @@ div.boss{
     animation: showBoss 0.8s ease-out forwards;
 }
 
-.bossAbsolut img{
+.bossAbsolut > img{
     cursor: pointer;
+    filter: drop-shadow(1px 1px 0.75rem #e53b44);
 }
 
 .bossAbsolut span{
@@ -39,4 +40,9 @@ div.boss{
     background: linear-gradient(to right, black, #327345, #193d3f);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin: 5px 0 0 0;
+}
+
+.bossAbsolut div img:nth-child(4){
+    width: 2.5vw;
 }

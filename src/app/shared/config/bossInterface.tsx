@@ -1,4 +1,4 @@
-type typDmg = "Normal" | "Fire" | "Ice";
+type typDmg = "Fire" | "Ice";
 
 interface BossType {
     HP: number,
