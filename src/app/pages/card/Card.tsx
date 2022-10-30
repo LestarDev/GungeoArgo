@@ -189,6 +189,7 @@ const Card = (card: PageType) => {
                 console.log("Dead")
             } else {
                 player.substract("HP", card.monster!.HP-player.ATK)
+                console.log("obr")
             }
             Swap(minusHpMonster)
         }
