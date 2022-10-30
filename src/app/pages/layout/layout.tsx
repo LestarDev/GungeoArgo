@@ -3,6 +3,9 @@ import "./layout.css"
 import heartIcon from "./../../../assets/health.png"
 import coinIcon from "./../../../assets/coin.png"
 import normalIcon from "./../../../assets/attack.png"
+import iceIcon from "./../../../assets/snow_icon.png"
+import fireIcon from "./../../../assets/fire_icon.png"
+import sAbilityIcon from "./../../../assets/special_icon.png"
 
 const Layout = () => {
 
@@ -36,11 +39,11 @@ const Layout = () => {
             <div><span>{player.DamageType}</span>
             <img src={dmgIcon} alt="Dmg Icon" /></div>
             <div><span>{player.RoundEffect.untilSuperAbility}</span>
-            <img src="" alt="s" /></div>
+            <img src={sAbilityIcon} alt="s" /></div>
             <div className={hideFire}><span>{player.RoundEffect.untilFired}</span>
-            <img src="" alt="f" /></div>
+            <img src={fireIcon} alt="f" /></div>
             <div className={hideIce}><span>{player.RoundEffect.iced}</span>
-            <img src="" alt="i" /></div>
+            <img src={iceIcon} alt="i" /></div>
         </div>
     )
 }
