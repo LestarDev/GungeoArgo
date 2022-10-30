@@ -6,7 +6,7 @@ const HealPotionBig: PageType = {
     img: healPotionBigIcon,
     item: {
         name: "Heal Potion Big",
-        power: 5,
+        power: 4,
         typ: "Potion"
     }
 }
