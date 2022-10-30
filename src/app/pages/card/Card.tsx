@@ -7,6 +7,8 @@ import randomItem from "../../shared/config/randomItem";
 import "./Card.css"
 import attackIcon from "./../../../assets/attack.png"
 import heartIcon from "./../../../assets/health.png"
+import GoldCoin2 from "../../shared/components/Money/goldCoin2";
+import GoldCoin3 from "../../shared/components/Money/goldCoin3";
 
 const Card = (card: PageType) => {
 
@@ -25,6 +27,10 @@ const Card = (card: PageType) => {
     let classNameIcon = "";
 
     const player = usePlayer()
+
+    const goldCoins: PageType[] = [
+        GoldCoin1, GoldCoin2, GoldCoin3
+    ]
 
     const Swap = (card: PageType) => {
 
@@ -69,10 +75,11 @@ const Card = (card: PageType) => {
     }
 
     const getGold = (card: PageType) => {
+        const GoldCoin: PageType = goldCoins[Math.floor(Math.random()*goldCoins.length)];
         const gold: PageType = {
-            typ: GoldCoin1.typ,
-            img: GoldCoin1.img,
-            money: GoldCoin1.money,
+            typ: GoldCoin.typ,
+            img: GoldCoin.img,
+            money: GoldCoin.money,
             pageNr: card.pageNr
         }
         return gold
@@ -100,6 +107,11 @@ const Card = (card: PageType) => {
         switch(card.item?.typ){
             case "Sword":
                 player.add("ATK", card.item!.power)
+                if(card.item.subType) {
+                    player.setPlayerDamageType(card.item.subType)
+                } else {
+                    player.setPlayerDamageType("Normal")
+                }
                 Swap(getRandomPage(card))
                 break;
             case "Potion":
@@ -140,6 +152,11 @@ const Card = (card: PageType) => {
             return
         } else {
             const minusHp: number = card.monster!.HP-player.ATK;
+            if(player.ATK==0){
+                player.substract("HP", card.monster!.HP-player.ATK)
+                Swap(getGold(card))
+                return
+            }             
             const minusHpMonster: PageType = {
                 typ: "Monster",
                 img: card.img,
@@ -154,7 +171,7 @@ const Card = (card: PageType) => {
             if(card.monster!.HP>=player.HP){
                 console.log("Dead")
             } else {
-                player.substract("HP", card.monster!.HP)
+                player.substract("HP", card.monster!.HP-player.ATK)
             }
             Swap(minusHpMonster)
         }
