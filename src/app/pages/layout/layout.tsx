@@ -16,6 +16,8 @@ const Layout = () => {
     let hideFire: string = "hidden"
     let hideIce: string = "hidden"
 
+    let classNameIsBoss: string = "Layout";
+
     switch(player.DamageType){
         case "Ice":
             dmgIcon="Ice"
@@ -30,8 +32,10 @@ const Layout = () => {
     if(player.RoundEffect.untilFired>0) hideFire=""
     if(player.RoundEffect.iced>0) hideIce=""
 
+    if(player.isBoss) classNameIsBoss="Layout BossLayout"
+
     return (
-        <div className="Layout">
+        <div className={classNameIsBoss}>
             <div><span>{player.HP}/15</span>
             <img src={heartIcon} alt="Heart" /></div>
             <div><span>{player.GOLD}</span>

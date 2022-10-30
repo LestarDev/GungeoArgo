@@ -29,6 +29,10 @@ div.boss{
     animation: showBoss 0.8s ease-out forwards;
 }
 
+.bossAbsolut img{
+    cursor: pointer;
+}
+
 .bossAbsolut span{
     font-size: 1.5rem;
     font-weight: bolder;
