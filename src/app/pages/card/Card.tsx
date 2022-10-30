@@ -103,7 +103,11 @@ const Card = (card: PageType) => {
                 Swap(getRandomPage(card))
                 break;
             case "Potion":
-                player.add("HP", card.item!.power)
+                if(player.HP+card.item!.power>15){
+                    player.add("HP", 15-player.HP)
+                }else {
+                    player.add("HP", card.item!.power)
+                }
                 Swap(getRandomPage(card))
                 break;
             case "Wand":
@@ -235,6 +239,7 @@ const Card = (card: PageType) => {
                 
                 cardRef.current!.style.transform="rotateY(360deg)";
 
+                player.nextRound()
                 check(card);
                 
             }}/>

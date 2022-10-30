@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import PageType from "../shared/config/pageInterface";
-import { dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
+import ThisRound from "../shared/config/roundInterface";
+import { setRoundEffect, dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
 
 type changeTyp = "ATK" | "HP" | "GOLD"
 
 const usePlayer = () => {
 
     const dispatch = useDispatch();
-    const {ATK, HP, GOLD, DamageType, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+    const {ATK, HP, GOLD, DamageType, RoundEffect, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
 
     const setPlayerDamageType = (typ: dmgTyp) => {
         dispatch(setDamageType(typ));
@@ -136,10 +137,24 @@ const usePlayer = () => {
         }
     }
 
+    const nextRound = () => {
+        const untilFiredValue: number =  RoundEffect.untilFired==0 ? 0 : 1;
+        const untilPoisonEffectValue: number = RoundEffect.untilPoisonEffect==0 ? 0 : 1;
+        const untilSuperAbilityValue: number = RoundEffect.untilSuperAbility==0 ? 0 : 1;
+        const icedValue: number = RoundEffect.iced==0 ? 0 : 1;
+        const currentRound: ThisRound = {
+            untilFired: RoundEffect.untilFired-untilFiredValue,
+            untilPoisonEffect: RoundEffect.untilPoisonEffect-untilPoisonEffectValue,
+            untilSuperAbility: RoundEffect.untilSuperAbility-untilSuperAbilityValue,
+            iced: RoundEffect.iced-icedValue
+        }
+        dispatch(setRoundEffect(currentRound));
+    }
+
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
-        HP, ATK, GOLD, DamageType
+        HP, ATK, GOLD, DamageType, RoundEffect
     })
 
 }

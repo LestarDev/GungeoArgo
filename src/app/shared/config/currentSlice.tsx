@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import PageType from './pageInterface'
 import Player from '../components/player'
 import randomItem from './randomItem'
+import ThisRound, { initThisRound } from './roundInterface'
 
 export type dmgTyp = "Normal" | "Fire" | "Ice";
 
@@ -20,7 +21,8 @@ interface CounterState {
   ATK: number,
   HP: number,
   GOLD: number,
-  DamageType: dmgTyp
+  DamageType: dmgTyp,
+  RoundEffect: ThisRound
 }
 
 // Define the initial state using that type
@@ -37,7 +39,8 @@ const initialState: CounterState = {
   ATK: 1,
   HP: 10,
   GOLD: 0,
-  DamageType: "Normal"
+  DamageType: "Normal",
+  RoundEffect: initThisRound
 }
 
 export const currencySlice = createSlice({
@@ -122,10 +125,13 @@ export const currencySlice = createSlice({
     },
     setDamageType: (state, action: PayloadAction<dmgTyp>) => {
       state.DamageType = action.payload;
+    },
+    setRoundEffect: (state, action: PayloadAction<ThisRound>) => {
+      state.RoundEffect = action.payload;
     }
   },
 })
 
-export const { setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
+export const { setRoundEffect, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } = currencySlice.actions
 
 export default currencySlice.reducer

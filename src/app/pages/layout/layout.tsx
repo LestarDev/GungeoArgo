@@ -23,12 +23,14 @@ const Layout = () => {
 
     return (
         <div className="Layout">
-            <div><span>{player.HP}</span>
+            <div><span>{player.HP}/15</span>
             <img src={heartIcon} alt="Heart" /></div>
             <div><span>{player.GOLD}</span>
             <img src={coinIcon} alt="Gold" /></div>
             <div><span>{player.DamageType}</span>
             <img src={dmgIcon} alt="Dmg Icon" /></div>
+            <div><span>{player.RoundEffect.untilSuperAbility}</span>
+            <img src="" alt="s" /></div>
         </div>
     )
 }
