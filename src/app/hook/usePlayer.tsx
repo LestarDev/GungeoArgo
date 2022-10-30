@@ -144,7 +144,7 @@ const usePlayer = () => {
             untilSuperAbility: RoundEffect.untilSuperAbility,
             iced: RoundEffect.iced
         }
-        return currentRound
+        dispatch(setRoundEffect(currentRound))
     }
 
     const addIce = () => {
@@ -154,7 +154,17 @@ const usePlayer = () => {
             untilSuperAbility: RoundEffect.untilSuperAbility,
             iced: RoundEffect.iced+1
         }
-        return currentRound
+        dispatch(setRoundEffect(currentRound))
+    }
+
+    const restartSuperAbility = () => {
+        const currentRound: ThisRound = {
+            untilFired: RoundEffect.untilFired,
+            untilPoisonEffect: RoundEffect.untilPoisonEffect,
+            untilSuperAbility: 10,
+            iced: RoundEffect.iced
+        }
+        dispatch(setRoundEffect(currentRound))
     }
 
     const nextRound = () => {
@@ -172,7 +182,7 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
         HP, ATK, GOLD, DamageType, RoundEffect
     })

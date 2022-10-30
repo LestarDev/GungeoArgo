@@ -10,6 +10,9 @@ const Layout = () => {
 
     let dmgIcon: string = ""
 
+    let hideFire: string = "hidden"
+    let hideIce: string = "hidden"
+
     switch(player.DamageType){
         case "Ice":
             dmgIcon="Ice"
@@ -21,7 +24,8 @@ const Layout = () => {
             dmgIcon=normalIcon
     }
 
-    
+    if(player.RoundEffect.untilFired>0) hideFire=""
+    if(player.RoundEffect.iced>0) hideIce=""
 
     return (
         <div className="Layout">
@@ -33,6 +37,10 @@ const Layout = () => {
             <img src={dmgIcon} alt="Dmg Icon" /></div>
             <div><span>{player.RoundEffect.untilSuperAbility}</span>
             <img src="" alt="s" /></div>
+            <div className={hideFire}><span>{player.RoundEffect.untilFired}</span>
+            <img src="" alt="f" /></div>
+            <div className={hideIce}><span>{player.RoundEffect.iced}</span>
+            <img src="" alt="i" /></div>
         </div>
     )
 }

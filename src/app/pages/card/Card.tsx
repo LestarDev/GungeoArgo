@@ -267,13 +267,17 @@ const Card = (card: PageType) => {
                 
                 cardRef.current!.style.transform="rotateY(360deg)";
                 
-                if(player.DamageType.untilFired>0) player.substract("HP", 1)
-                if(player.DamageType.untilPoisonEffect>0) player.substract("HP", 1)
-                if(player.DamageType.iced>0) player.substract("HP", 0)
-
-                console.log("Fire: ", player.RoundEffect.untilFired, " | Ice: ", player.RoundEffect.iced)
+                if(player.RoundEffect.untilFired>0) player.substract("HP", 1)
+                if(player.RoundEffect.untilPoisonEffect>0) player.substract("HP", 1)
+                if(player.RoundEffect.iced>0) player.substract("HP", 1)
 
                 player.nextRound()
+                
+                if(player.RoundEffect.untilSuperAbility==0) {
+                    player.add("ATK", 1)
+                    player.restartSuperAbility()
+                }
+
                 check(card);
                 
             }}/>

@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.Layout div.hidden{
+    display: none;
+}
+
 .Layout div:nth-child(2){
     display: flex;
     align-items: flex-end;
