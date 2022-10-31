@@ -7,6 +7,18 @@
     }
 }
 
+@keyframes bossPulsing {
+    0%{
+        filter: drop-shadow(1px 1px 0.1rem #e53b44);
+    }
+    50%{
+        filter: drop-shadow(1px 1px 0.75rem #e53b44);
+    }
+    100%{
+        filter: drop-shadow(1px 1px 0.1rem #e53b44);
+    }
+}
+
 div.hideBoss{
     display: none;
 }
@@ -31,7 +43,7 @@ div.boss{
 
 .bossAbsolut > img{
     cursor: pointer;
-    filter: drop-shadow(1px 1px 0.75rem #e53b44);
+    animation: bossPulsing 1.5s ease 0.6s infinite;
 }
 
 .bossAbsolut span{
@@ -45,4 +57,18 @@ div.boss{
 
 .bossAbsolut div img:nth-child(4){
     width: 2.5vw;
+}
+
+.bossAbsolutIconTyp{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.bossAbsolutSuperAbility{
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    color: black;
+    font-weight: bold;
 }

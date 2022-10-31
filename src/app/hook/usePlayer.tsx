@@ -188,6 +188,18 @@ const usePlayer = () => {
             iced: RoundEffect.iced-icedValue
         }
         dispatch(setRoundEffect(currentRound));
+
+        if(isBoss) {
+            const untilSuperAbilityValue: number = currentBoss.untilSuperAbility==0 ? 0 : 1;
+            const thisTimeBoss: BossType = {
+                HP: currentBoss.HP,
+                ATK: currentBoss.ATK,
+                subType: currentBoss.subType,
+                untilSuperAbility: currentBoss.untilSuperAbility-untilSuperAbilityValue
+            }
+            dispatch(setBoss(thisTimeBoss))
+        }
+
     }
 
     return ({
