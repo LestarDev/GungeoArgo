@@ -1,4 +1,4 @@
-type typDmg = "Fire" | "Ice";
+export type typDmg = "Fire" | "Ice";
 
 interface BossType {
     HP: number,
