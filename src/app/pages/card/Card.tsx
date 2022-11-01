@@ -11,6 +11,14 @@ import GoldCoin2 from "../../shared/components/Money/goldCoin2";
 import GoldCoin3 from "../../shared/components/Money/goldCoin3";
 import fireIcon from "./../../../assets/fire_icon.png"
 import iceIcon from "./../../../assets/snow_icon.png"
+import Slime from "../../shared/components/monsters/slime";
+import fireSlime from "../../shared/components/monsters/slimeFire";
+import iceSlime from "../../shared/components/monsters/slimeIce";
+import BossType from "../../shared/config/bossInterface";
+import slimeBossNormalAttack from "./../../../assets/slime_attack.png"
+import slimeBossFireAttack from "./../../../assets/fire_slime_attack.png"
+import slimeBossIceAttack from "./../../../assets/ice_slime_attack.png"
+
 
 const Card = (card: PageType) => {
 
@@ -31,11 +39,22 @@ const Card = (card: PageType) => {
 
     let classNameTypeIcon = "hide";
 
+    const bossAtackRef = useRef<HTMLDivElement>(null);
+
+    const BossAtackIconRef = useRef<HTMLImageElement>(null);
+
     const player = usePlayer()
 
     const goldCoins: PageType[] = [
         GoldCoin1, GoldCoin2, GoldCoin3
     ]
+
+    const hideSuperAttack = async () => {
+        await delay(600)
+        bossAtackRef.current!.className="hide"
+        BossAtackIconRef.current!.src=Blank.img
+    }
+
 
     const Swap = (card: PageType) => {
 
@@ -292,7 +311,96 @@ const Card = (card: PageType) => {
 
                 check(card);
 
-                player.nextBossRound()
+                if(player.currentBoss.untilSuperAbility==0){
+                    let thisTimeBoss: BossType;
+                    if(player.currentBoss.name=="Slime King"){
+                        function randomIntFromInterval(min: number, max: number) { // min and max included 
+                            return Math.floor(Math.random() * (max - min + 1) + min)
+                        }
+                        bossAtackRef.current!.className="bossAtackAnimation"
+                        const randomAbilitiesNr: number = randomIntFromInterval(0, 3)
+                        if(randomAbilitiesNr==1){
+                            let delPage: number;
+
+                            if(player.page1.typ=="Player"){
+                                delPage = 1;
+                            } else if(player.page2.typ=="Player"){         
+                                delPage = 2;
+                            } else if(player.page3.typ=="Player"){
+                                delPage = 3;
+                            } else if(player.page4.typ=="Player"){
+                                delPage = 4;
+                            } else if(player.page5.typ=="Player"){
+                                delPage = 5;
+                            } else if(player.page6.typ=="Player"){
+                                delPage = 6;
+                            } else if(player.page7.typ=="Player"){
+                                delPage = 7;
+                            } else if(player.page8.typ=="Player"){
+                                delPage = 8;
+                            } else{
+                                delPage = 9;
+                            }
+                        
+                            const Pages: number[] = [
+                                1,2,3,4,5,6,7,8,9
+                            ].filter(function(item) {
+                                return item !== delPage
+                            })
+                        
+                            const Slimes: PageType[] = [
+                                Slime, fireSlime, fireSlime, iceSlime, iceSlime
+                            ]
+
+                            const currentSlime: PageType = Slimes[Math.floor(Math.random()*Slimes.length)]
+
+                            switch(currentSlime){
+                                case iceSlime:
+                                    BossAtackIconRef.current!.src=slimeBossIceAttack
+                                    break;
+                                case fireSlime:
+                                    BossAtackIconRef.current!.src=slimeBossFireAttack
+                                    break;
+                                default:
+                                    BossAtackIconRef.current!.src=slimeBossNormalAttack
+                            }
+                            hideSuperAttack()
+                            player.setPage(Pages[Math.floor(Math.random()*Pages.length)], currentSlime)
+                            thisTimeBoss = {
+                                HP: player.currentBoss.HP,
+                                ATK: player.currentBoss.ATK,
+                                subType: player.currentBoss.subType,
+                                untilSuperAbility: 5,
+                                name: player.currentBoss.name
+                            }
+                        } else if(randomAbilitiesNr==2){
+                            console.log("HP")
+                            const addHP: number = player.currentBoss.HP==20 ? 0 : 1
+                            thisTimeBoss = {
+                                HP: player.currentBoss.HP+addHP,
+                                ATK: player.currentBoss.ATK,
+                                subType: player.currentBoss.subType,
+                                untilSuperAbility: 5,
+                                name: player.currentBoss.name
+                            }
+                        } else {
+                            console.log("super ability 3")
+                            thisTimeBoss = {
+                                HP: player.currentBoss.HP,
+                                ATK: player.currentBoss.ATK,
+                                subType: player.currentBoss.subType,
+                                untilSuperAbility: 5,
+                                name: player.currentBoss.name
+                            }
+                        }
+                        
+                        player.setCurrentBoss(thisTimeBoss)
+                    }
+                }else{
+                    player.nextBossRound()
+                }
+
+               
 
                 if(player.GOLD>=300) player.setBossValue(true)
 
@@ -307,6 +415,9 @@ const Card = (card: PageType) => {
             </div>
             <div className={classNameTypeIcon}>
                 <img src={typeIcon} alt="" />
+            </div>
+            <div className="hide" ref={bossAtackRef}>
+                <img src={Blank.img} alt="" ref={BossAtackIconRef} />
             </div>
         </div>
     )

@@ -1,3 +1,15 @@
+@keyframes showBossAtack {
+    0%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0);
+    }
+}
+
 .card{
     max-width: 14vw;
     width: 14vw;
@@ -51,4 +63,23 @@
 .card div.absolut img{
     width: 2vw;
     height: 2vw;
+}
+
+.bossAtackAnimation{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    animation: showBossAtack 0.6s ease-in-out forwards;
+}
+
+.bossAtackAnimation img{
+    width: 100%;
+    height: 70%;
+}
+
+div.hide{
+    display: none;
+    z-index: 2;
 }

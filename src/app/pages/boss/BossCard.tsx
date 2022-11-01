@@ -12,6 +12,10 @@ import Slime from "../../shared/components/monsters/slime"
 import fireSlime from "../../shared/components/monsters/slimeFire"
 import PageType from "../../shared/config/pageInterface"
 import iceSlime from "../../shared/components/monsters/slimeIce"
+import slimeBossNormalAttack from "./../../../assets/slime_attack.png"
+import slimeBossFireAttack from "./../../../assets/fire_slime_attack.png"
+import slimeBossIceAttack from "./../../../assets/ice_slime_attack.png"
+import Blank from "../../shared/components/blank"
 
 const BossCard = () => {
 
@@ -25,13 +29,18 @@ const BossCard = () => {
 
     if(player.currentBoss.subType=="Fire") icon=fireIcon 
 
-    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-
     const bossRef = useRef<HTMLDivElement>(null);
 
-    const endBossRound = async () => {
-        await delay(300)
-        player.nextRound()
+    const bossAtackRef = useRef<HTMLDivElement>(null);
+
+    const BossAtackIconRef = useRef<HTMLImageElement>(null);
+
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
+    const hideSuperAttack = async () => {
+        await delay(600)
+        bossAtackRef.current!.className="hide"
+        BossAtackIconRef.current!.src=Blank.img
     }
 
     return (
@@ -70,13 +79,13 @@ const BossCard = () => {
                 player.substract("ATK", player.ATK)
 
                 if(player.currentBoss.untilSuperAbility==0){
-                    console.log(player.currentBoss)
+                    let thisTimeBoss: BossType;
                     if(player.currentBoss.name=="Slime King"){
-                        console.log("y")
                         function randomIntFromInterval(min: number, max: number) { // min and max included 
                             return Math.floor(Math.random() * (max - min + 1) + min)
                         }
-                        const randomAbilitiesNr: number = randomIntFromInterval(1, 3)
+                        bossAtackRef.current!.className="bossAtackAnimation"
+                        const randomAbilitiesNr: number = randomIntFromInterval(0, 3)
                         if(randomAbilitiesNr==1){
                             let delPage: number;
 
@@ -110,31 +119,65 @@ const BossCard = () => {
                                 Slime, fireSlime, fireSlime, iceSlime, iceSlime
                             ]
 
-                            player.setPage(Pages[Math.floor(Math.random()*Pages.length)], Slimes[Math.floor(Math.random()*Slimes.length)])
+                            console.log("Slime")
 
+                            const currentSlime: PageType = Slimes[Math.floor(Math.random()*Slimes.length)]
+
+                            switch(currentSlime){
+                                case iceSlime:
+                                    BossAtackIconRef.current!.src=slimeBossIceAttack
+                                    break;
+                                case fireSlime:
+                                    BossAtackIconRef.current!.src=slimeBossFireAttack
+                                    break;
+                                default:
+                                    BossAtackIconRef.current!.src=slimeBossNormalAttack
+                            }
+                            hideSuperAttack()
+                            player.setPage(Pages[Math.floor(Math.random()*Pages.length)], currentSlime)
+                            thisTimeBoss = {
+                                HP: player.currentBoss.HP-1,
+                                ATK: player.currentBoss.ATK,
+                                subType: player.currentBoss.subType,
+                                untilSuperAbility: 5,
+                                name: player.currentBoss.name
+                            }
                         } else if(randomAbilitiesNr==2){
-                            console.log("super ability 2")
+                            thisTimeBoss = {
+                                HP: player.currentBoss.HP,
+                                ATK: player.currentBoss.ATK,
+                                subType: player.currentBoss.subType,
+                                untilSuperAbility: 5,
+                                name: player.currentBoss.name
+                            }
+                            console.log("HP")
                         } else {
-                            console.log("super ability 3")
+                            thisTimeBoss = {
+                                HP: player.currentBoss.HP-1,
+                                ATK: player.currentBoss.ATK,
+                                subType: player.currentBoss.subType,
+                                untilSuperAbility: 5,
+                                name: player.currentBoss.name
+                            }
                         }
-                        const thisTimeBoss: BossType = {
-                            HP: player.currentBoss.HP-1,
-                            ATK: player.currentBoss.ATK,
-                            subType: player.currentBoss.subType,
-                            untilSuperAbility: 5,
-                            name: player.currentBoss.name
-                        }
+                        
                         player.setCurrentBoss(thisTimeBoss)
                     }
                 }
-
+                
                 player.nextRound()
+                
+
+                
             }}/>
             <span>{player.currentBoss.name}</span>
             <div><span>{player.currentBoss.HP}</span><img src={heartIcon} alt="h" />
             <span>&nbsp;{player.currentBoss.ATK}</span><img src={attackIcon} alt="a" /></div>
             <div className="bossAbsolutIconTyp"><img src={icon} alt="t" /></div>
             <div className="bossAbsolutSuperAbility">{player.currentBoss.untilSuperAbility}<img src={sAbilityIcon} alt="s" /></div>
+            <div className="hide" ref={bossAtackRef}>
+                <img src={Blank.img} alt="" ref={BossAtackIconRef} />
+            </div>
         </div>
     )
 }
