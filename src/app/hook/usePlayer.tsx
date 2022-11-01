@@ -189,21 +189,25 @@ const usePlayer = () => {
         }
         dispatch(setRoundEffect(currentRound));
 
+
+    }
+
+    const nextBossRound = () => {
         if(isBoss) {
             const untilSuperAbilityValue: number = currentBoss.untilSuperAbility==0 ? 0 : 1;
+            const currentSubType: dmgTyp = currentBoss.subType=="Ice" ? "Fire" : "Ice"
             const thisTimeBoss: BossType = {
                 HP: currentBoss.HP,
                 ATK: currentBoss.ATK,
-                subType: currentBoss.subType,
+                subType: currentSubType,
                 untilSuperAbility: currentBoss.untilSuperAbility-untilSuperAbilityValue
             }
             dispatch(setBoss(thisTimeBoss))
         }
-
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBossValue, setCurrentBoss,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBossValue, setCurrentBoss, nextBossRound,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
         HP, ATK, GOLD, DamageType, RoundEffect, isBoss, currentBoss
     })

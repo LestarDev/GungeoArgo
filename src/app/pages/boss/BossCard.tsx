@@ -6,7 +6,7 @@ import attackIcon from "./../../../assets/attack.png"
 import fireIcon from "./../../../assets/fire_icon.png"
 import iceIcon from "./../../../assets/snow_icon.png"
 import sAbilityIcon from "./../../../assets/special_icon.png"
-import React from "react"
+import React, { useRef } from "react"
 import BossType, { typDmg } from "../../shared/config/bossInterface"
 
 const BossCard = () => {
@@ -21,22 +21,47 @@ const BossCard = () => {
 
     if(player.currentBoss.subType=="Fire") icon=fireIcon 
 
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
+    const bossRef = useRef<HTMLDivElement>(null);
+
+    const endBossRound = async () => {
+        await delay(300)
+        player.nextRound()
+    }
+
     return (
-        <div className={classNameBoss}>
+        <div className={classNameBoss} ref={bossRef}>
             <img src={bossIcon} alt="Boss" onClick={(e: React.MouseEvent)=>{
-                let otherSubType: typDmg = "Fire";
-                if(player.currentBoss.subType=="Ice") otherSubType="Ice"
+                let otherSubType: typDmg = "Ice";
+                if(player.currentBoss.subType=="Ice") otherSubType="Fire"
                 if(player.ATK>0) {
                     if(player.ATK<player.currentBoss.HP){
+                        const untilSuperAbilityValue: number = player.currentBoss.untilSuperAbility==0 ? 0 : 1;
                         const thisTimeBoss: BossType = {
                             HP: player.currentBoss.HP-player.ATK,
                             ATK: player.currentBoss.ATK,
                             subType: otherSubType,
-                            untilSuperAbility: player.currentBoss.untilSuperAbility
+                            untilSuperAbility: player.currentBoss.untilSuperAbility-untilSuperAbilityValue
                         }
                         player.setCurrentBoss(thisTimeBoss)
+                    }else{
+                        console.log("Finished Boss")
                     }
+                } else {
+                    const untilSuperAbilityValue: number = player.currentBoss.untilSuperAbility==0 ? 0 : 1;
+                    const thisTimeBoss: BossType = {
+                        HP: player.currentBoss.HP-1,
+                        ATK: player.currentBoss.ATK,
+                        subType: otherSubType,
+                        untilSuperAbility: player.currentBoss.untilSuperAbility-untilSuperAbilityValue
+                    }
+                    player.setCurrentBoss(thisTimeBoss)
+                    player.substract("HP", 2)
+                    
                 }
+                
+                player.substract("ATK", player.ATK)
 
                 player.nextRound()
             }}/>
