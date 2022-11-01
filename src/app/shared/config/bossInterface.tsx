@@ -4,7 +4,8 @@ interface BossType {
     HP: number,
     ATK: number,
     subType: typDmg,
-    untilSuperAbility: number
+    untilSuperAbility: number,
+    name: string
 }
 
 export default BossType

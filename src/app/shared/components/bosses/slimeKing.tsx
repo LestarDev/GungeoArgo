@@ -4,7 +4,8 @@ const SlimeKing: BossType =  {
     HP: 20,
     ATK: 1,
     subType: "Fire",
-    untilSuperAbility: 5
+    untilSuperAbility: 5,
+    name: "Slime King"
 }
 
 

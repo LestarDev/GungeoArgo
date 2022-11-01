@@ -200,7 +200,8 @@ const usePlayer = () => {
                 HP: currentBoss.HP,
                 ATK: currentBoss.ATK,
                 subType: currentSubType,
-                untilSuperAbility: currentBoss.untilSuperAbility-untilSuperAbilityValue
+                untilSuperAbility: currentBoss.untilSuperAbility-untilSuperAbilityValue,
+                name: currentBoss.name
             }
             dispatch(setBoss(thisTimeBoss))
         }
