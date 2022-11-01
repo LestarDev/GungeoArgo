@@ -16,6 +16,7 @@ import slimeBossNormalAttack from "./../../../assets/slime_attack.png"
 import slimeBossFireAttack from "./../../../assets/fire_slime_attack.png"
 import slimeBossIceAttack from "./../../../assets/ice_slime_attack.png"
 import Blank from "../../shared/components/blank"
+import ThisRound from "../../shared/config/roundInterface"
 
 const BossCard = () => {
 
@@ -152,6 +153,13 @@ const BossCard = () => {
                             }
                             console.log("HP")
                         } else {
+                            const randomEffectValue = randomIntFromInterval(0, 3)
+                            if(player.currentBoss.subType=="Fire"){
+                                player.addFire(randomAbilitiesNr)
+                            } else {
+                                player.addIce(randomEffectValue)
+                            }
+
                             thisTimeBoss = {
                                 HP: player.currentBoss.HP-1,
                                 ATK: player.currentBoss.ATK,

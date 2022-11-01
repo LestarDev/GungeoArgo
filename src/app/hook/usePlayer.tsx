@@ -166,6 +166,16 @@ const usePlayer = () => {
         dispatch(setRoundEffect(currentRound))
     }
 
+    const restartFireAndIce = () => {
+        const currentRound: ThisRound = {
+            untilFired: 0,
+            untilPoisonEffect: RoundEffect.untilPoisonEffect,
+            untilSuperAbility: RoundEffect.untilSuperAbility,
+            iced: 0
+        }
+        dispatch(setRoundEffect(currentRound))
+    }
+
     const restartSuperAbility = () => {
         const currentRound: ThisRound = {
             untilFired: RoundEffect.untilFired,
@@ -208,7 +218,7 @@ const usePlayer = () => {
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBossValue, setCurrentBoss, nextBossRound,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBossValue, setCurrentBoss, nextBossRound, restartFireAndIce,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
         HP, ATK, GOLD, DamageType, RoundEffect, isBoss, currentBoss
     })

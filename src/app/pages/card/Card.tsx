@@ -144,6 +144,7 @@ const Card = (card: PageType) => {
                 }else {
                     player.add("HP", card.item!.power)
                 }
+                if(card.item!.name=="Heal Potion Big") player.restartFireAndIce()
                 Swap(getRandomPage(card))
                 break;
             case "Wand":
@@ -385,6 +386,12 @@ const Card = (card: PageType) => {
                             }
                         } else {
                             console.log("super ability 3")
+                            const randomEffectValue = randomIntFromInterval(0, 3)
+                            if(player.currentBoss.subType=="Fire"){
+                                player.addFire(randomAbilitiesNr)
+                            } else {
+                                player.addIce(randomEffectValue)
+                            }
                             thisTimeBoss = {
                                 HP: player.currentBoss.HP,
                                 ATK: player.currentBoss.ATK,
