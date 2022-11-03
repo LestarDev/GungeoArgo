@@ -5,8 +5,6 @@ import GameOver from "../gameover/GameOver";
 import Layout from "../layout/layout";
 
 const GameScreen = () => {
-
-    const player = usePlayer();
     
     return (
         <div>
