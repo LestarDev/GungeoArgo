@@ -275,7 +275,7 @@ const Card = (card: PageType) => {
     return (
         <div className="card" ref={cardRef}>
             <img className={classNamePlayer} src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
-                if(card.typ=="Player") {player.setBossValue(true); return};
+                if(card.typ=="Player") return
 
                 if(player.page1.typ=="Player"){
                     if(card.pageNr!=2 && card.pageNr!=4) return
