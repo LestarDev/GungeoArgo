@@ -385,7 +385,7 @@ const Card = (card: PageType) => {
                                 name: player.currentBoss.name
                             }
                         } else {
-                            console.log("super ability 3")
+                            console.log("Add Fire")
                             const randomEffectValue = randomIntFromInterval(0, 3)
                             if(player.currentBoss.subType=="Fire"){
                                 player.addFire(randomAbilitiesNr)
