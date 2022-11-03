@@ -1,17 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
+import BossType from "../shared/config/bossInterface";
 import PageType from "../shared/config/pageInterface";
 import ThisRound from "../shared/config/roundInterface";
-import { setRoundEffect, dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
+import { setBoss, bossIsFalse, bossIsTrue, setRoundEffect, dmgTyp, setDamageType, setPageNr1, setPageNr2, setPageNr3, setPageNr4, setPageNr5, setPageNr6, setPageNr7, setPageNr8, setPageNr9, addATK, addHP, addGOLD, subGOLD, subATK, subHP, setPage1, setPage2, setPage3, setPage4, setPage5, setPage6, setPage7, setPage8, setPage9 } from "./../shared/config/currentSlice"
 
 type changeTyp = "ATK" | "HP" | "GOLD"
 
 const usePlayer = () => {
 
     const dispatch = useDispatch();
-    const {ATK, HP, GOLD, DamageType, RoundEffect, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+    const {ATK, HP, GOLD, DamageType, RoundEffect, isBoss, currentBoss, page1, page2, page3, page4, page5, page6, page7, page8, page9} = (useSelector((state) => state) as any).currency;
+
+    const setCurrentBoss = (boss: BossType) => {
+        dispatch(setBoss(boss))
+    }
 
     const setPlayerDamageType = (typ: dmgTyp) => {
         dispatch(setDamageType(typ));
+    }
+
+    const setBossValue =  (v: boolean) => {
+        v ? dispatch(bossIsTrue()) : dispatch(bossIsFalse())
     }
 
     const getPage = (pageNr: number) => {
@@ -157,6 +166,16 @@ const usePlayer = () => {
         dispatch(setRoundEffect(currentRound))
     }
 
+    const restartFireAndIce = () => {
+        const currentRound: ThisRound = {
+            untilFired: 0,
+            untilPoisonEffect: RoundEffect.untilPoisonEffect,
+            untilSuperAbility: RoundEffect.untilSuperAbility,
+            iced: 0
+        }
+        dispatch(setRoundEffect(currentRound))
+    }
+
     const restartSuperAbility = () => {
         const currentRound: ThisRound = {
             untilFired: RoundEffect.untilFired,
@@ -179,12 +198,29 @@ const usePlayer = () => {
             iced: RoundEffect.iced-icedValue
         }
         dispatch(setRoundEffect(currentRound));
+
+
+    }
+
+    const nextBossRound = () => {
+        if(isBoss) {
+            const untilSuperAbilityValue: number = currentBoss.untilSuperAbility==0 ? 0 : 1;
+            const currentSubType: dmgTyp = currentBoss.subType=="Ice" ? "Fire" : "Ice"
+            const thisTimeBoss: BossType = {
+                HP: currentBoss.HP,
+                ATK: currentBoss.ATK,
+                subType: currentSubType,
+                untilSuperAbility: currentBoss.untilSuperAbility-untilSuperAbilityValue,
+                name: currentBoss.name
+            }
+            dispatch(setBoss(thisTimeBoss))
+        }
     }
 
     return ({
-        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility,
+        setPage, add, substract, setPageNr, getPage, setPlayerDamageType, nextRound, addFire, addIce, restartSuperAbility, setBossValue, setCurrentBoss, nextBossRound, restartFireAndIce,
         page1, page2, page3, page4, page5, page6, page7, page8, page9,
-        HP, ATK, GOLD, DamageType, RoundEffect
+        HP, ATK, GOLD, DamageType, RoundEffect, isBoss, currentBoss
     })
 
 }

@@ -1,0 +1,74 @@
+@keyframes showBoss {
+    from{
+        transform: translateY(-50%) scale(0);
+    }
+    to{
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+@keyframes bossPulsing {
+    0%{
+        filter: drop-shadow(1px 1px 0.1rem #e53b44);
+    }
+    50%{
+        filter: drop-shadow(1px 1px 0.75rem #e53b44);
+    }
+    100%{
+        filter: drop-shadow(1px 1px 0.1rem #e53b44);
+    }
+}
+
+div.hideBoss{
+    display: none;
+}
+
+.bossAbsolut{
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    padding: 1rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    background-color: #e4a672;
+    border: 5px inset #743f39;
+    width: 15vw;
+    border-radius: 5%;
+}
+
+div.boss{
+    animation: showBoss 0.8s ease-out forwards;
+}
+
+.bossAbsolut > img{
+    cursor: pointer;
+    animation: bossPulsing 1.5s ease 0.6s infinite;
+}
+
+.bossAbsolut span{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    background: linear-gradient(to right, black, #327345, #193d3f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 5px 0 0 0;
+}
+
+.bossAbsolut div img:nth-child(4){
+    width: 2.5vw;
+}
+
+.bossAbsolutIconTyp{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.bossAbsolutSuperAbility{
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    color: black;
+    font-weight: bold;
+}

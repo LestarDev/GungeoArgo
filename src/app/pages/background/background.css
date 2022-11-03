@@ -1,7 +1,25 @@
+@keyframes toBoss {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-15%);
+    }
+}
+
 .cardWrapper{
     max-width: 71vw;
     width: 71vw;
     display: flex;
     flex-wrap: wrap;
     min-height: 100vh;
+}
+
+.cardWrapperBoss{
+    max-width: 71vw;
+    width: 71vw;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    animation: toBoss 0.6s ease-in forwards;
 }
