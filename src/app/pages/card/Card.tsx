@@ -385,11 +385,13 @@ const Card = (card: PageType) => {
                                 name: player.currentBoss.name
                             }
                         } else {
-                            console.log("Add Fire")
+                            console.log("Add Fire/Ice")
                             const randomEffectValue = randomIntFromInterval(0, 3)
                             if(player.currentBoss.subType=="Fire"){
+                                if(randomEffectValue>0) BossAtackIconRef.current!.src=fireIcon;            
                                 player.addFire(randomAbilitiesNr)
                             } else {
+                                if(randomEffectValue>0) BossAtackIconRef.current!.src=iceIcon
                                 player.addIce(randomEffectValue)
                             }
                             thisTimeBoss = {
