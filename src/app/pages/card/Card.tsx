@@ -110,7 +110,7 @@ const Card = (card: PageType) => {
     }
 
     const getRandomPage = (card: PageType) => {
-        const randPage: PageType = randomItem();
+        const randPage: PageType = randomItem(player.isBoss);
 
         const returnItem: PageType = {
             typ: randPage.typ,
@@ -179,10 +179,10 @@ const Card = (card: PageType) => {
                 const v: number = Math.floor(Math.random()*card.monster.HP)+1
                 switch(card.monster.subType){
                     case "Fire":
-                        player.addFire(v)
+                        if(player.RoundEffect.iced<v) player.addFire(v-player.RoundEffect.iced)
                         break;
                     case "Ice":
-                        player.addIce(v)
+                        if(player.RoundEffect.untilFired<v) player.addIce(v-player.RoundEffect.untilFired)
                         break;
                     default:
                         console.log("Error, Cad.tsx Fight subtyp")
@@ -413,7 +413,7 @@ const Card = (card: PageType) => {
 
                 if(player.GOLD>=300) player.setBossValue(true)
 
-                if(player.HP<=0) console.log("Dead")
+                if(player.currentBoss.HP<=0) player.setBossValue(false)
 
             }}/>
             <div>

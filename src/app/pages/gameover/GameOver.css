@@ -1,20 +1,14 @@
 @keyframes showGameOverScreen {
-    0%{
+    from{
         transform: translateY(-100%);
     }
-    80%{
-        transform: translateY(0);
-    }
-    85%{
-        transform: translateY(-30%);
-    }
-    100%{
+    to{
         transform: translateY(0);
     }
 }
 
 .GameOverScreen{
-    animation: showGameOverScreen 3s cubic-bezier(0.96, 0.1, 0.64, 0.92) forwards;
+    animation: showGameOverScreen 1s ease-in-out forwards;
     position: absolute;
     top: 0;
     left: 0;
