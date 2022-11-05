@@ -17,6 +17,7 @@ import slimeBossFireAttack from "./../../../assets/fire_slime_attack.png"
 import slimeBossIceAttack from "./../../../assets/ice_slime_attack.png"
 import Blank from "../../shared/components/blank"
 import ThisRound from "../../shared/config/roundInterface"
+import NobleSword from "../../shared/components/items/fromBosses/nobleSword"
 
 const BossCard = () => {
 
@@ -173,9 +174,18 @@ const BossCard = () => {
                     }
                 }
                 
+                if(player.currentBoss.HP<=0) {
+                    player.setBossValue(false)
+                    if(player.page1.typ=="Player"){
+                        player.setPage(2, NobleSword)
+                    } else {
+                        player.setPage(1, NobleSword)
+                    }
+                }
+
                 player.nextRound()
                 
-
+                
                 
             }}/>
             <span>{player.currentBoss.name}</span>

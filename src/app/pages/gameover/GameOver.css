@@ -1,0 +1,40 @@
+@keyframes showGameOverScreen {
+    from{
+        transform: translateY(-100%);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+
+.GameOverScreen{
+    animation: showGameOverScreen 1s ease-in-out forwards;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.backgroundGameOver{
+    padding: 2rem 5rem;
+    background: #e53b44;
+    border: 1rem outset #932835;
+    color: black;
+    font-size: 2rem;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.backgroundGameOver:hover{
+    border: 1rem inset #932835;
+}
+
+.backgroundGameOver p::selection{
+    color: black;
+    background: #e53b44;
+}

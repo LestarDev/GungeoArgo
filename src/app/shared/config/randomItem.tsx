@@ -1,3 +1,4 @@
+import usePlayer from "../../hook/usePlayer"
 import Blank from "../components/blank"
 import NobleSword from "../components/items/fromBosses/nobleSword"
 import HealPotion1 from "../components/items/healPotion1"
@@ -14,16 +15,22 @@ import fireSlime from "../components/monsters/slimeFire"
 import iceSlime from "../components/monsters/slimeIce"
 import PageType from "./pageInterface"
 
-function randomItem(): PageType {
+function randomItem(isBoss: boolean): PageType {
 
-    const Pages: PageType[] = [
-        Blank, Blank, Blank, Blank, 
-        GoldCoin1, GoldCoin1, GoldCoin2, GoldCoin3, 
+    const Pages: PageType[] = !isBoss ? [
+        Blank, Blank, Blank, Blank, Blank,
+        GoldCoin1, GoldCoin1, GoldCoin1, GoldCoin2, GoldCoin2, GoldCoin3, 
         HealPotion1, HealPotion1, HealPotion2, HealPotionBig, 
         WoodenSword, WoodenSword, IronSword,
         // NobleSword,
         Slime, Slime, Slime, fireSlime, fireSlime, iceSlime, iceSlime 
         // Skeleton
+    ]  :  [
+        Blank, Blank, Blank, Blank, 
+        GoldCoin1, GoldCoin1, GoldCoin2, GoldCoin3, 
+        HealPotion1, HealPotion1, HealPotion2, HealPotionBig, 
+        WoodenSword, WoodenSword, IronSword,
+        Slime, Slime, fireSlime, iceSlime
     ]
 
     return (

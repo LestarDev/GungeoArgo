@@ -6,7 +6,7 @@ const NobleSword: PageType = {
     img: nobleSwordIcon,
     item:  {
         name: "Odin's Sword",
-        power: 15,
+        power: 25,
         typ: "Sword",
         subType: "Ice"
     }
