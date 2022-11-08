@@ -23,11 +23,7 @@ const BossCard = () => {
 
     const player = usePlayer()
 
-    let classNameBoss: string = "bossAbsolut hideBoss"
-
     let icon: string = iceIcon
-
-    if(player.isBoss) classNameBoss="bossAbsolut boss"
 
     if(player.currentBoss.subType=="Fire") icon=fireIcon 
 
@@ -45,8 +41,11 @@ const BossCard = () => {
         BossAtackIconRef.current!.src=Blank.img
     }
 
+    if(player.isBoss){
+
+    
     return (
-        <div className={classNameBoss} ref={bossRef}>
+        <div className="bossAbsolut boss" ref={bossRef}>
             <img src={bossIcon} alt="Boss" onClick={(e: React.MouseEvent)=>{
                 let otherSubType: typDmg = "Ice";
                 if(player.currentBoss.subType=="Ice") otherSubType="Fire"
@@ -198,6 +197,11 @@ const BossCard = () => {
             </div>
         </div>
     )
+    } else {
+        return (
+            <div></div>
+        )
+    }
 }
 
 export default BossCard

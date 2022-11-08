@@ -172,6 +172,7 @@ const Card = (card: PageType) => {
         if(player.ATK>=card.monster!.HP) {
             player.substract("ATK", card.monster!.HP)
             // player.setPage(card.pageNr!, GoldCoin1)
+            console.log("Player zabil %c"+card.monster!.name, "color: #e53b44;")
             Swap(getGold(card))
             return
         } else {
@@ -275,7 +276,7 @@ const Card = (card: PageType) => {
     return (
         <div className="card" ref={cardRef}>
             <img className={classNamePlayer} src={card.img} alt={card.typ} onClick={(e: React.MouseEvent)=>{
-                if(card.typ=="Player") return
+                if(card.typ=="Player") {player.setBossValue(true); return}
 
                 if(player.page1.typ=="Player"){
                     if(card.pageNr!=2 && card.pageNr!=4) return
